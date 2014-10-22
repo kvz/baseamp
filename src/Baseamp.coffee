@@ -2,7 +2,7 @@ request  = require "request"
 util     = require "util"
 async    = require "async"
 debug    = require("debug")("Baseamp:Baseamp")
-Mustache = require "Mustache"
+Mustache = require "mustache"
 
 class Baseamp
   endpoints:
