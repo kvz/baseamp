@@ -29,6 +29,7 @@ class TodoList
     for line in lines
       if line.substr(0, 2) == "##"
         todoList.name = line.replace /^##\s+/, ""
+        continue
       if !line.trim()
         continue
       todoList.todos.all.push new Todo line

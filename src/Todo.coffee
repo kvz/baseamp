@@ -15,17 +15,36 @@ class Todo
     @category = todo.category
 
   fromMarkdown: (str) ->
-    str   = str.replace /^[\s\-]+|[\s\-]+$/g, ""
-    parts = str.split /\s+/
-    debug util.inspect
-      parts: parts
+    # Trim dashes and whitespace
+    str = str.replace /^[\s\-]+|[\s\-]+$/g, ""
+
+    # Get ID first from the end of the line
+    id = undefined
+    m  = str.match /\s+\(#(\d+)\)$/
+    if m?[1]
+      id = m[1]
+      # Remove ID from the end of the line
+      str = str.replace m[0], ""
+
+
+    # Parse the other parts
+    pattern  = "^"
+    pattern += "\\[(x| )\\]\\s+"                # completed?
+    pattern += "((\\d{4}-\\d{2}-\\d{2})\\s+)?"  # date
+    pattern += "(([A-Z]{3})\\s+)?"              # assignee
+    pattern += "(.+)"                           # text
+    pattern += "$"
+
+    m = str.match new RegExp pattern
+    if !m
+      throw new Error "Cannot match '#{str}'"
 
     todo =
-      due_at  : "0000-00-00"
-      assignee: "KVZ"
-      content : "whut"
-      category: "remaining"
-      id      : null
+      due_at  : m[3]
+      assignee: m[5]
+      category: if m[1] == 'x' then "completed" else "remaining"
+      content : m[6]
+      id      : id
 
     return todo
 
@@ -61,7 +80,7 @@ class Todo
     else if @category == "remaining"
       buf += "[ ] "
     else if @category == "trashed"
-      buf += "~"
+      return ""
     else
       throw new Error "Unknown category #{@category}"
 
@@ -76,9 +95,6 @@ class Todo
       buf += "    "
 
     buf += "#{@content} "
-
-    if @category == "trashed"
-      buf += "~ "
 
     if @id?
       buf += "(##{@id})"

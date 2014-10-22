@@ -144,16 +144,13 @@ class Baseamp
     buf   = fs.readFileSync file, "utf-8"
     parts = buf.split /^##/
 
-    debug util.inspect
-      parts: parts
-
     todoLists = []
     for part in parts
       part     = "###{part}"
       todoLists.push new TodoList part
 
     debug util.inspect
-      todoLists: todoLists
+      todoList: todoLists[0].todolists
 
       cb null, "winning"
 
