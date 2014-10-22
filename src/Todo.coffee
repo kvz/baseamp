@@ -10,11 +10,24 @@ class Todo
 
     @due_at   = @_formatDate(todo.due_at)
     @assignee = @_formatName(todo.assignee?.name || todo.assignee)
-    @url      = todo.url
     @id       = todo.id
     @content  = todo.content
     @category = todo.category
 
+  fromMarkdown: (str) ->
+    str   = str.replace /^[\s\-]+|[\s\-]+$/g, ""
+    parts = str.split /\s+/
+    debug util.inspect
+      parts: parts
+
+    todo =
+      due_at  : "0000-00-00"
+      assignee: "KVZ"
+      content : "whut"
+      category: "remaining"
+      id      : null
+
+    return todo
 
   _formatDate: (str) ->
     if !str?
@@ -40,12 +53,6 @@ class Todo
       handle += part.substr(0, howMany).toUpperCase()
 
     return handle
-
-  fromMarkdown: (str) ->
-    todo = {
-      bla: bla
-    }
-    return todo
 
   toMarkdown: () ->
     buf = " - "

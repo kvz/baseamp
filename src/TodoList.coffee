@@ -15,15 +15,24 @@ class TodoList
 
     for category, todos of todoList.todos
       for todo in todos
-        todo.category = category
+        if !todo.category
+          todo.category = category
         @todos.push new Todo todo
 
   fromMarkdown: (str) ->
-    todoList = [
-      {
-        bla: bla
-      }
-    ]
+    todoList = {
+      todos:
+        all: []
+    }
+    str      = "#{str}".replace "\r", ""
+    lines    = str.split "\n"
+    for line in lines
+      if line.substr(0, 2) == "##"
+        todoList.name = line.replace /^##\s+/, ""
+      if !line.trim()
+        continue
+      todoList.todos.all.push new Todo line
+
     return todoList
 
   toMarkdown: ->

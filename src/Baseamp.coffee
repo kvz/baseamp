@@ -139,5 +139,23 @@ class Baseamp
 
       cb null, "winning"
 
+  export: (file, cb) ->
+    # @todo add support for STDIN here via file == '-'
+    buf   = fs.readFileSync file, "utf-8"
+    parts = buf.split /^##/
+
+    debug util.inspect
+      parts: parts
+
+    todoLists = []
+    for part in parts
+      part     = "###{part}"
+      todoLists.push new TodoList part
+
+    debug util.inspect
+      todoLists: todoLists
+
+      cb null, "winning"
+
 
 module.exports = Baseamp
