@@ -150,7 +150,7 @@ class Baseamp
       todoLists.push new TodoList part
 
     debug util.inspect
-      todoList: todoLists[0].todolists
+      todoList: todoLists[0].todos
 
       cb null, "winning"
 

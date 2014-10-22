@@ -8,8 +8,8 @@ class Todo
     if _.isString(todo)
       todo = @fromMarkdown todo
 
-    @due_at   = @_formatDate(todo.due_at)
-    @assignee = @_formatName(todo.assignee?.name || todo.assignee)
+    @due_at   = todo.due_at
+    @assignee = todo.assignee?.name || todo.assignee
     @id       = todo.id
     @content  = todo.content
     @category = todo.category
@@ -49,13 +49,13 @@ class Todo
     return todo
 
   _formatDate: (str) ->
-    if !str?
+    if !str
       return "0000-00-00"
 
     return moment(str).format("YYYY-MM-DD")
 
   _formatName: (str) ->
-    if !str?
+    if !str
       return str
 
     str = "#{str}"
@@ -85,14 +85,10 @@ class Todo
       throw new Error "Unknown category #{@category}"
 
     if @due_at?
-      buf += "#{@due_at} "
-    else
-      buf += "0000-00-00 "
+      buf += @_formatDate(@due_at) + " "
 
     if @assignee?
-      buf += "#{@assignee} "
-    else
-      buf += "    "
+      buf += @_formatName @assignee + " "
 
     buf += "#{@content} "
 

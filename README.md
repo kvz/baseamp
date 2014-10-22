@@ -20,6 +20,10 @@ npm install --save baseamp
 ## Use
 
 
+## Todo
+
+- [ ] Fix import bug duplicating todos over different lists
+
 ## Contribute
 
 I'd be happy to accept pull requests. If you plan on working on something big, please first give a shout!
