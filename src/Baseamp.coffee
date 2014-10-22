@@ -5,7 +5,6 @@ fs         = require "fs"
 async      = require "async"
 debug      = require("debug")("Baseamp:Baseamp")
 Mustache   = require "mustache"
-fixtureDir = "#{__dirname}/../test/fixtures"
 
 class Baseamp
   endpoints:
@@ -21,18 +20,23 @@ class Baseamp
       throw new Error "Need a account_id"
     if !@config.project_id?
       throw new Error "Need a project_id"
+    if !@config.fixture_dir?
+      @config.fixture_dir = "#{__dirname}/../test/fixtures"
+
+  _tmpltr: (url, params) ->
+    replace = @config
+    if params?
+      for key, val of params
+        replace[key] = val
+
+    return Mustache.render url, replace
 
   _request: (opts, data, cb) ->
     if typeof opts == "string"
       opts =
         url: opts
 
-    replace = @config
-    if opts?.replace?
-      for key, val of opts.replace
-        replace[key] = val
-
-    opts.url  = Mustache.render opts.url, replace
+    opts.url  = @_tmpltr opts.url, opts.replace
     opts.json = true
     opts.auth =
       username: @config.username
@@ -42,25 +46,44 @@ class Baseamp
 
     request.get opts, (err, req, data) =>
 
-      fs.writeFileSync @_toFixtureName, JSON.stringify(@_toFixture(data), null, 2)
+      fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)), JSON.stringify(@_toFixture(data), null, 2)
 
       cb err, data
 
-  _toFixture: (obj) ->
-    if !_.isObject(date) && !_.isArray(obj)
-      return obj
+  _toFixtureVal: (val, key) ->
+    if _.isObject(val) || _.isArray(val)
+      val = @_toFixture val
+    else if key == "account_id"
+      val = 11
+    else if key == "url"
+      val = "file://" + @_toFixtureFile(val)
+    else if _.isNumber(val)
+      val = 22
+    else if _.isBoolean(val)
+      val = false
+    # else if _.isString(val)
+    #   val = "what up"
 
-    for key, val of obj
-      if _.isNumeric(val)
-        obj[key] = 1
+    return val
+
+  _toFixture: (obj) ->
+    if _.isObject(obj)
+      for key, val of obj
+        obj[key] = @_toFixtureVal(val, key)
+    else if _.isArray(obj)
+      for val, key in obj
+        obj[key] = @_toFixtureVal(val, key)
+    else
+      obj = @_toFixtureVal(obj)
 
     return obj
 
-  _toFixtureName: (url) ->
+  _toFixtureFile: (url) ->
     parts     = url.split "/projects/"
     url       = parts.pop()
-    filename  = fixtureDir + "/"
+    filename  = "{{fixture_dir}}" + "/"
     filename += url.replace /[^a-z0-9]/g, "."
+    return filename
 
   getTodoLists: (cb) ->
     @_request @endpoints["todolists"], null, (err, todolists) =>
