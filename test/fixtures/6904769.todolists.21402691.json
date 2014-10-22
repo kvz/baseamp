@@ -1,0 +1,408 @@
+{
+  "id": 22,
+  "name": "API Refactorings and minor feature additions",
+  "description": "",
+  "created_at": "2014-10-22T17:49:33.000+04:00",
+  "updated_at": "2014-10-22T20:23:09.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.21402691.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Tim Koschützki",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Separate NPM Module that handles all our S3 stuff; refactor S3 class with it",
+        "completed": false,
+        "created_at": "2014-10-22T17:49:42.000+04:00",
+        "updated_at": "2014-10-22T17:49:42.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133064940.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "refactor cmd, spawn, tool etc. to just have one cli abstraction to make sure we always properly escape any commands",
+        "completed": false,
+        "created_at": "2014-10-22T17:54:48.000+04:00",
+        "updated_at": "2014-10-22T17:54:48.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133066396.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Fix SSL URL tmp locations: http://support.transloadit.com/discussions/questions/91378-invalid-certificate-for-ssl_url-in-the-uploads-array",
+        "completed": false,
+        "created_at": "2014-10-22T17:41:34.000+04:00",
+        "updated_at": "2014-10-22T20:23:09.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": "2014-11-02",
+        "due_at": "2014-11-02",
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133062884.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Write tests for autoscaler uploader checker",
+        "completed": false,
+        "created_at": "2014-10-22T17:55:18.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133066554.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add tests for file.coffee::_exifTool()",
+        "completed": false,
+        "created_at": "2014-10-22T17:55:29.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133066678.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Make sure notify_url is always written like this everywhere, and not like Notify URL or something else. Also it should always have the <code> tag around it in the documentation and not just quotation marks or so. It should be consistent everywhere.",
+        "completed": false,
+        "created_at": "2014-10-22T17:56:44.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133066985.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Assembly errors should show original uploaded file name (vs hashed filenames), to make it easier to find the culprit in big imports",
+        "completed": false,
+        "created_at": "2014-10-22T18:00:23.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133068043.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Average all the months of https://transloadit.com/admin/revenues per customer, then make each cell green or red.",
+        "completed": false,
+        "created_at": "2014-10-22T18:01:20.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133068253.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Move all tests to coffeescript and non-system tests to mocha",
+        "completed": false,
+        "created_at": "2014-10-22T18:02:25.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133068745.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "implement watermarking based on \"use\" parameter, not url: http://support.transloadit.com/discussions/questions/8411-transparency-clipping-paths-for-images",
+        "completed": false,
+        "created_at": "2014-10-22T18:03:57.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133069475.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "make sure s3/store PUT requests are done using SSL: http://support.transloadit.com/discussions/questions/8758-s3store",
+        "completed": false,
+        "created_at": "2014-10-22T18:04:06.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133069561.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "video/encode crop and fillcrop: http://support.transloadit.com/discussions/questions/91981-videoencode-crop-fillcrop",
+        "completed": false,
+        "created_at": "2014-10-22T18:06:15.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133070775.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Use S3 URLs in folder type, not subdomain type: http://support.transloadit.com/discussions/problems/15172-resulting-s3-url-for-non-us-buckets",
+        "completed": false,
+        "created_at": "2014-10-22T18:07:37.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133071391.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "try scaling up spot drone, if exceeded error, ordinary drone",
+        "completed": false,
+        "created_at": "2014-10-22T18:07:48.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133071433.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "return in meta data if png image contains transparency",
+        "completed": false,
+        "created_at": "2014-10-22T18:07:58.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133071500.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "offer an option to delete all temporary files right after the assembly execution: http://support.transloadit.com/discussions/questions/9256-clearing-temporary-files",
+        "completed": false,
+        "created_at": "2014-10-22T18:50:08.000+04:00",
+        "updated_at": "2014-10-22T18:59:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133089154.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Clusterbaby Refactoring",
+        "completed": false,
+        "created_at": "2014-10-22T20:20:16.000+04:00",
+        "updated_at": "2014-10-22T20:20:51.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133121811.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Tim Koschützki"
+    }
+  ]
+}

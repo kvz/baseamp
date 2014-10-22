@@ -1,0 +1,627 @@
+{
+  "id": 22,
+  "name": "Big Tech",
+  "description": null,
+  "created_at": "2014-09-04T20:26:31.000+04:00",
+  "updated_at": "2014-10-22T20:19:18.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.19919177.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Kevin van Zonneveld",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "New Website - Shiny (See separate todo list)",
+        "completed": false,
+        "created_at": "2014-10-14T19:30:27.000+04:00",
+        "updated_at": "2014-10-14T19:30:31.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131423172.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "API3 (See separate todo list)",
+        "completed": false,
+        "created_at": "2014-09-04T20:26:55.000+04:00",
+        "updated_at": "2014-10-14T19:30:31.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123147965.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Import from email (imap)",
+        "completed": false,
+        "created_at": "2014-09-04T20:27:08.000+04:00",
+        "updated_at": "2014-10-14T19:30:31.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148131.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Automated firewalling",
+        "completed": false,
+        "created_at": "2014-09-04T20:27:26.000+04:00",
+        "updated_at": "2014-10-14T19:30:31.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148227.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Customized Ubuntu images",
+        "completed": false,
+        "created_at": "2014-09-04T20:27:34.000+04:00",
+        "updated_at": "2014-10-20T20:19:40.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148260.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Sponsor someone to hack tus.io support into node-formidable",
+        "completed": false,
+        "created_at": "2014-09-04T20:28:16.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148548.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Use API for all (Account) CRUD operations",
+        "completed": false,
+        "created_at": "2014-09-04T20:28:26.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148581.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Improved Redis redundancy",
+        "completed": false,
+        "created_at": "2014-09-04T20:28:44.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148650.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Fluentd for log aggregation http://docs.fluentd.org/articles/quickstart",
+        "completed": false,
+        "created_at": "2014-09-04T20:28:52.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148679.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Replace uploaders with s3. Uploaders just do signing. Status is JSON on s3.",
+        "completed": false,
+        "created_at": "2014-09-04T20:29:00.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148717.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Riak cluster for assembly storage",
+        "completed": false,
+        "created_at": "2014-09-04T20:29:58.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123149032.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Finish Metriks.io https://github.com/kvz/metriks",
+        "completed": false,
+        "created_at": "2014-09-23T19:40:50.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.127073273.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Cron setting for templates. We run the template on fixed times. Useful for import jobs",
+        "completed": false,
+        "created_at": "2014-10-10T18:41:46.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.130815363.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Port all remaining .js files in api2 repo to .coffee",
+        "completed": false,
+        "created_at": "2014-10-14T20:32:41.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131448128.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Merge Command, Command2, Tool, and use the resulting class in *all* places where commands are executed in the API",
+        "completed": false,
+        "created_at": "2014-10-14T22:45:18.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131494919.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Optionally remove `aws ls` for checking if files made it to S3, or at least set up a different kind of retry, in order to make eventual consistency not make assemblies take forever (the retry could be on the put+ls, instead of just on the ls); the retry could also be at quick linear intervals vs exponential backoff",
+        "completed": false,
+        "created_at": "2014-10-15T15:03:14.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131632608.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "/meta/read could be used as plumbing for all metadata. that way we don't run exif/midentify tools on uploaders, and can leverage existing bots. Downside: more file/s3 transactions, just to get some meta info",
+        "completed": false,
+        "created_at": "2014-10-15T17:42:14.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131658638.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Allow assemblies to be categorized or tagged for tracking/reporting",
+        "completed": false,
+        "created_at": "2014-10-15T23:41:52.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Joe Danziger",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131776900.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "One Makefile to rule them all. (vs ./Makefile, ./api2/Makefile)",
+        "completed": false,
+        "created_at": "2014-10-20T20:17:52.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.132559653.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add certificate checking to statuspage (poodle/heartbleed, expire dates, etc). Check each uploader & crm",
+        "completed": false,
+        "created_at": "2014-10-20T21:07:40.000+04:00",
+        "updated_at": "2014-10-20T21:07:40.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.132577035.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Make Transloadit work with Dropzone https://github.com/enyo/dropzone/issues/125#issuecomment-51127973",
+        "completed": false,
+        "created_at": "2014-10-22T14:53:54.000+04:00",
+        "updated_at": "2014-10-22T14:53:54.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133033433.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Make Imagemagick stack configurable. Preserve old version. New version should at least support webp.",
+        "completed": false,
+        "created_at": "2014-10-22T14:55:24.000+04:00",
+        "updated_at": "2014-10-22T20:15:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Marius"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133033642.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Make Transloadit work with https://www.meteor.com/",
+        "completed": false,
+        "created_at": "2014-10-22T15:01:04.000+04:00",
+        "updated_at": "2014-10-22T15:01:04.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Joe Danziger"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133034344.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Improve Statuspage Monitoring",
+        "completed": false,
+        "created_at": "2014-10-22T20:18:38.000+04:00",
+        "updated_at": "2014-10-22T20:19:18.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": "2014-11-02",
+        "due_at": "2014-11-02",
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133121336.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Fix poodlebeed",
+        "completed": false,
+        "created_at": "2014-10-20T20:18:18.000+04:00",
+        "updated_at": "2014-10-20T20:18:19.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "completed_at": "2014-10-20T20:18:19.000+04:00",
+        "completer": {
+          "id": 22,
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.132559748.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Cluster",
+        "completed": false,
+        "created_at": "2014-09-04T20:27:42.000+04:00",
+        "updated_at": "2014-10-20T20:18:06.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "completed_at": "2014-10-20T20:18:06.000+04:00",
+        "completer": {
+          "id": 22,
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148284.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Kevin van Zonneveld"
+    }
+  ]
+}

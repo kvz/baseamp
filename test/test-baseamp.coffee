@@ -28,16 +28,15 @@ describe "baseamp", ->
 
       anonymized = baseamp._toFixture input
       # debug util.inspect anonymized
-      expect(anonymized).to.deep.equal {
-        hey: 22,
-        hold: {
-          more: "strings",
+      expect(anonymized).to.deep.equal
+        hey: 22
+        hold:
+          more: "strings"
           andbooleans: false
-        },
-        account_id: 11,
-        url: "file://{{fixture_dir}}/605816632.todolists.968316918.json",
-        app_url: "https://basecamp.com/999999999/projects/605816632/todolists/968316918"
-      }
+        account_id: 11
+        url: "file://{{{fixture_dir}}}/605816632.todolists.968316918.json"
+        app_url: "http://example.com/"
+
       done()
 
   describe "import", ->

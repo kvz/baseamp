@@ -8,7 +8,7 @@ Mustache   = require "mustache"
 
 class Baseamp
   endpoints:
-    todolists: "https://basecamp.com/{{account_id}}/api/v1/projects/{{project_id}}/todolists.json"
+    todolists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
 
   constructor: (config) ->
     @config = config || {}
@@ -51,37 +51,41 @@ class Baseamp
       cb err, data
 
   _toFixtureVal: (val, key) ->
-    if _.isObject(val) || _.isArray(val)
-      val = @_toFixture val
+    newVal = _.clone val
+    if _.isObject(newVal) || _.isArray(newVal)
+      newVal = @_toFixture newVal
     else if key == "account_id"
-      val = 11
+      newVal = 11
     else if key == "url"
-      val = "file://" + @_toFixtureFile(val)
-    else if _.isNumber(val)
-      val = 22
-    else if _.isBoolean(val)
-      val = false
-    # else if _.isString(val)
-    #   val = "what up"
+      newVal = "file://" + @_toFixtureFile(newVal)
+    else if "#{key}".slice(-4) == "_url"
+      newVal = "http://example.com/"
+    else if _.isNumber(newVal)
+      newVal = 22
+    else if _.isBoolean(newVal)
+      newVal = false
+    # else if _.isString(newVal)
+    #   newVal = "what up"
 
-    return val
+    return newVal
 
   _toFixture: (obj) ->
-    if _.isObject(obj)
-      for key, val of obj
-        obj[key] = @_toFixtureVal(val, key)
-    else if _.isArray(obj)
-      for val, key in obj
-        obj[key] = @_toFixtureVal(val, key)
+    newObj = _.clone obj
+    if _.isObject(newObj)
+      for key, val of newObj
+        newObj[key] = @_toFixtureVal(val, key)
+    else if _.isArray(newObj)
+      for val, key in newObj
+        newObj[key] = @_toFixtureVal(val, key)
     else
-      obj = @_toFixtureVal(obj)
+      newObj = @_toFixtureVal(newObj)
 
-    return obj
+    return newObj
 
   _toFixtureFile: (url) ->
     parts     = url.split "/projects/"
     url       = parts.pop()
-    filename  = "{{fixture_dir}}" + "/"
+    filename  = "{{{fixture_dir}}}" + "/"
     filename += url.replace /[^a-z0-9]/g, "."
     return filename
 

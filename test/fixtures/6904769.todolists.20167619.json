@@ -1,0 +1,172 @@
+{
+  "id": 22,
+  "name": "Legal",
+  "description": null,
+  "created_at": "2014-09-12T15:12:39.000+04:00",
+  "updated_at": "2014-10-22T18:59:19.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.20167619.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Kevin van Zonneveld",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Do we want SLAs for everybody. Not even to win big customers over yet, but as a tool to limit & clarify responsibilities & liability in case of service interruptions. If it's clear from the get-go how everybody is compensated and it's part of the terms of service, it will hopefully be less of a bumpy ride if we're ever down for a day.",
+        "completed": false,
+        "created_at": "2014-09-12T15:13:50.000+04:00",
+        "updated_at": "2014-10-10T18:41:03.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791206.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Investigate the pros & cons of licensing some codecs that we use",
+        "completed": false,
+        "created_at": "2014-09-12T15:13:56.000+04:00",
+        "updated_at": "2014-10-10T18:41:03.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791239.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "We might want to start hosting content as well (vs exporting to customer's own servers/s3 buckets. This would mean risking \"DMCA takedowns\" for hosting copyrighted materials, or worse, hosting things like childporn without us knowing about it. Before entering this snakepit we'll want all risks mapped and appropriate counter measures in place.",
+        "completed": false,
+        "created_at": "2014-09-12T15:14:15.000+04:00",
+        "updated_at": "2014-10-10T18:41:03.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791277.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Figure out how stock options would work for new employees",
+        "completed": false,
+        "created_at": "2014-09-12T15:14:34.000+04:00",
+        "updated_at": "2014-10-10T18:41:03.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791335.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Review / improve our privacy & terms of service documents",
+        "completed": false,
+        "created_at": "2014-09-12T15:14:54.000+04:00",
+        "updated_at": "2014-10-10T18:41:03.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791379.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Invite Frank to basecamp",
+        "completed": false,
+        "created_at": "2014-09-12T15:12:49.000+04:00",
+        "updated_at": "2014-10-10T18:41:03.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "completed_at": "2014-10-10T18:41:03.000+04:00",
+        "completer": {
+          "id": 22,
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791112.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Kevin van Zonneveld"
+    }
+  ]
+}

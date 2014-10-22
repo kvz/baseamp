@@ -1,0 +1,144 @@
+{
+  "id": 22,
+  "name": "New & Improved Robots",
+  "description": "",
+  "created_at": "2014-09-10T08:38:29.000+04:00",
+  "updated_at": "2014-10-22T18:59:19.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.20079603.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Joe Danziger",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "[NEW] /audio/split - check out http://mp3splt.sourceforge.net/",
+        "completed": false,
+        "created_at": "2014-09-10T08:38:37.000+04:00",
+        "updated_at": "2014-09-10T08:46:41.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Joe Danziger",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124209675.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "[NEW] /audio/merge - check out http://mp3wrap.sourceforge.net/",
+        "completed": false,
+        "created_at": "2014-09-10T08:38:45.000+04:00",
+        "updated_at": "2014-09-10T08:46:30.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Joe Danziger",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124209685.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "[NEW] /audio/detect - check out https://musicbrainz.org/, and large list at http://musicmachinery.com/music-apis/",
+        "completed": false,
+        "created_at": "2014-09-10T08:38:53.000+04:00",
+        "updated_at": "2014-09-10T08:46:50.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Joe Danziger",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124209689.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "[UPDATE] /video/merge - would be cool to add ken burns transitions on photos",
+        "completed": false,
+        "created_at": "2014-09-10T08:45:35.000+04:00",
+        "updated_at": "2014-09-10T08:47:05.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Joe Danziger",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124210178.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "[NEW] /image/sprite - useful for VTT and css sprites. Will need to play together with /media/playlist or similar",
+        "completed": false,
+        "created_at": "2014-10-14T19:27:42.000+04:00",
+        "updated_at": "2014-10-14T19:28:25.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131422100.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Joe Danziger"
+    }
+  ]
+}

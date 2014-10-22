@@ -62,7 +62,7 @@ payload="${payload}  \"assignee\": {"
 payload="${payload}    \"id\": ${person_id},"
 payload="${payload}    \"type\": \"Person\""
 payload="${payload}  }"
-payload="${payload}}"
+payload="${payload}}}"
 
 # Add
 curl \

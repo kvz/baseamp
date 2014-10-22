@@ -1,0 +1,326 @@
+{
+  "id": 22,
+  "name": "jQuery Plugin",
+  "description": null,
+  "created_at": "2014-10-22T17:38:29.000+04:00",
+  "updated_at": "2014-10-22T18:59:19.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.21402264.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Tim Koschützki",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Implement a parameter to add a drag and drop panel (false by default for backwards compatibility). https://github.com/tim-kos/transloadit-drag-and-drop",
+        "completed": false,
+        "created_at": "2014-10-22T17:43:53.000+04:00",
+        "updated_at": "2014-10-22T17:43:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063491.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add a destroy method that unbinds the plugin from the set of elements and removes the dataset property; also see http://support.transloadit.com/discussions/questions/8663-not-try-and-upload-again-when-a-different-button-is-used-to-submit-the-form",
+        "completed": false,
+        "created_at": "2014-10-22T17:44:14.000+04:00",
+        "updated_at": "2014-10-22T17:44:14.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063561.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "track assembly progress through websockets and not through polling",
+        "completed": false,
+        "created_at": "2014-10-22T17:44:33.000+04:00",
+        "updated_at": "2014-10-22T17:44:33.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063628.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Make a bower component: http://sindresorhus.com/bower-components/ of the jquery plugin",
+        "completed": false,
+        "created_at": "2014-10-22T17:44:40.000+04:00",
+        "updated_at": "2014-10-22T17:44:40.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063647.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add verbose documentation to the GitHub Readme",
+        "completed": false,
+        "created_at": "2014-10-22T17:44:52.000+04:00",
+        "updated_at": "2014-10-22T17:44:52.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063697.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Refactor the plugin so, that the code for the UI and the code for API requests are in two separate files: http://support.transloadit.com/discussions/questions/7797-ie10-jsonp-error",
+        "completed": false,
+        "created_at": "2014-10-22T17:45:58.000+04:00",
+        "updated_at": "2014-10-22T17:45:58.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063958.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Integrate with GitHub CDN, so that we have https://transloadit.github.io/transloadit-jquery/latest.js",
+        "completed": false,
+        "created_at": "2014-10-22T17:46:15.000+04:00",
+        "updated_at": "2014-10-22T17:46:15.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133064048.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Support max-file-upload-count as a setting: http://support.transloadit.com/discussions/questions/8661-setting-the-max-file-upload-count-outside-of-the-html-field",
+        "completed": false,
+        "created_at": "2014-10-22T17:46:26.000+04:00",
+        "updated_at": "2014-10-22T17:46:26.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133064132.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Should throw an alert() if the form contains a file input field that has no \"name\" attribute, because that breaks the plugin",
+        "completed": false,
+        "created_at": "2014-10-22T17:46:46.000+04:00",
+        "updated_at": "2014-10-22T17:46:46.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133064193.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Write blogpost about the jQuery SDK version change and the removal of the seq parameter support. People on custom forks should manually apply this patch https://github.com/transloadit/jquery-sdk/compare/v2.5.0...master Then also email all customers about this blogpost",
+        "completed": false,
+        "created_at": "2014-10-22T17:47:53.000+04:00",
+        "updated_at": "2014-10-22T17:48:26.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133064421.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Think about letting the progress bar of the jQuery plugin go to only 99%, not 100%: http://support.transloadit.com/discussions/suggestions/10704-fix-percentage-for-processing-phase generally think about better progress display for the plugin for people with wait: true Progress estimates based on the last assembly with the same template would be nice",
+        "completed": false,
+        "created_at": "2014-10-22T18:08:45.000+04:00",
+        "updated_at": "2014-10-22T18:09:09.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133071834.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "we need an end to end automatic test with a browser for the latest jQuery plugin and the latest API version",
+        "completed": false,
+        "created_at": "2014-10-22T18:10:24.000+04:00",
+        "updated_at": "2014-10-22T18:10:25.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133072503.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Update jQuery releases in Readme",
+        "completed": false,
+        "created_at": "2014-10-22T18:48:29.000+04:00",
+        "updated_at": "2014-10-22T18:48:35.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "completed_at": "2014-10-22T18:48:35.000+04:00",
+        "completer": {
+          "id": 22,
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133088616.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Tim Koschützki"
+    }
+  ]
+}

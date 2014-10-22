@@ -1,0 +1,88 @@
+{
+  "id": 22,
+  "name": "Bugs (this list should always be emptied first)",
+  "description": null,
+  "created_at": "2014-10-22T17:42:40.000+04:00",
+  "updated_at": "2014-10-22T18:59:19.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.21402412.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Tim Koschützki",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Big file upload lists can exceed the assemblies.files database field length: http://support.transloadit.com/discussions/problems/13485-problem-with-assemblies-page-files-display",
+        "completed": false,
+        "created_at": "2014-10-22T17:42:43.000+04:00",
+        "updated_at": "2014-10-22T18:05:02.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Tim Koschützki"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133063190.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "result: false is ignored if step is piped into a storage step",
+        "completed": false,
+        "created_at": "2014-10-22T18:08:16.000+04:00",
+        "updated_at": "2014-10-22T18:08:16.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Tim Koschützki"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133071595.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Tim Koschützki"
+    }
+  ]
+}

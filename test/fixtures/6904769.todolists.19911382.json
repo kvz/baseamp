@@ -1,0 +1,679 @@
+{
+  "id": 22,
+  "name": "Marketing / Attracting and converting people to paid customers",
+  "description": "",
+  "created_at": "2014-09-04T18:09:31.000+04:00",
+  "updated_at": "2014-10-22T18:59:19.000+04:00",
+  "completed": false,
+  "position": 22,
+  "private": false,
+  "trashed": false,
+  "url": "file://{{{fixture_dir}}}/6904769.todolists.19911382.json",
+  "app_url": "http://example.com/",
+  "remaining_count": 22,
+  "completed_count": 22,
+  "creator": {
+    "id": 22,
+    "name": "Kevin van Zonneveld",
+    "avatar_url": "http://example.com/",
+    "fullsize_avatar_url": "http://example.com/"
+  },
+  "todos": {
+    "remaining": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Get more customers like Coursera to commit to yearly/enterprise agreements",
+        "completed": false,
+        "created_at": "2014-09-12T15:13:29.000+04:00",
+        "updated_at": "2014-09-23T15:46:25.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124791151.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Write case-study about Coursera",
+        "completed": false,
+        "created_at": "2014-09-04T18:09:50.000+04:00",
+        "updated_at": "2014-09-23T15:31:49.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Tim Koschützki"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123096251.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Upgrade language of documentation",
+        "completed": false,
+        "created_at": "2014-09-04T18:10:01.000+04:00",
+        "updated_at": "2014-09-23T15:31:55.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Joe Danziger"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123096336.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Upgrade language of website",
+        "completed": false,
+        "created_at": "2014-09-04T18:10:07.000+04:00",
+        "updated_at": "2014-09-23T15:31:58.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Joe Danziger"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123096373.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Optimize adwords",
+        "completed": false,
+        "created_at": "2014-09-04T18:10:21.000+04:00",
+        "updated_at": "2014-09-23T15:32:04.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123096419.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Better logo",
+        "completed": false,
+        "created_at": "2014-09-04T18:32:28.000+04:00",
+        "updated_at": "2014-10-16T16:43:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Joe Danziger"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123105029.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Launch `shiny`. Our new design as seen on crm-staging.transloadit.com:8080",
+        "completed": false,
+        "created_at": "2014-09-04T18:32:37.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123105065.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add support for Promo Codes",
+        "completed": false,
+        "created_at": "2014-09-04T18:37:43.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Tim Koschützki"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123106971.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Write business plan (yeah.. : )",
+        "completed": false,
+        "created_at": "2014-09-04T18:37:53.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123107010.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Write marketing plan",
+        "completed": false,
+        "created_at": "2014-09-04T18:37:56.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123107045.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Live chat via e.g. Olark",
+        "completed": false,
+        "created_at": "2014-09-04T19:48:29.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Joe Danziger"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123134830.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Make HLS easy & fun",
+        "completed": false,
+        "created_at": "2014-09-04T20:21:26.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123146105.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Feature requests via UserVoice",
+        "completed": false,
+        "created_at": "2014-09-04T20:21:39.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123146148.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Get developers to use our API on hackathons (without sponsoring the hackathon :)",
+        "completed": false,
+        "created_at": "2014-09-04T20:22:27.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123146488.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Reseller program: Offer people a 1-year 10% cut on any customer revenue they bring in.",
+        "completed": false,
+        "created_at": "2014-09-04T20:28:06.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123148510.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Create Explainer Video for Website",
+        "completed": false,
+        "created_at": "2014-09-10T06:12:13.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Joe Danziger",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.124198998.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add \"Heroku Button\" to docs: https://buttons.heroku.com/",
+        "completed": false,
+        "created_at": "2014-09-23T12:59:59.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.126978993.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Sponsor NodeUP",
+        "completed": false,
+        "created_at": "2014-10-01T19:48:47.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.128832561.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Sponsor http://cocoapods.org/",
+        "completed": false,
+        "created_at": "2014-10-03T16:32:00.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.129346019.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Get listed up on https://www.npmjs.org/whoshiring",
+        "completed": false,
+        "created_at": "2014-10-06T18:43:19.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.129704266.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Get enlisted in http://education.github.com/pack",
+        "completed": false,
+        "created_at": "2014-10-10T18:42:28.000+04:00",
+        "updated_at": "2014-10-10T18:42:35.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.130815496.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Get all our parttimers (who want to) listed as such on our team page",
+        "completed": false,
+        "created_at": "2014-10-14T12:16:38.000+04:00",
+        "updated_at": "2014-10-14T12:16:38.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131334424.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Goodies: Stickers, t-shirts, etc. To hand out at conferences and send to e.g. security researchers. It's odd, but many of them have requested this. Maybe they like a closet full of wartrophies or sth",
+        "completed": false,
+        "created_at": "2014-10-14T21:15:04.000+04:00",
+        "updated_at": "2014-10-14T21:15:04.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131462303.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Get listed on https://code.google.com/p/go-wiki/wiki/GoUsers",
+        "completed": false,
+        "created_at": "2014-10-15T00:46:57.000+04:00",
+        "updated_at": "2014-10-15T00:46:57.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Marius",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.131535919.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "We need to improve our on-boarding process, like a set of tutorials like http://tour.golang.org/#1 where people create their first template and assemblies directly after signup and learn the basics",
+        "completed": false,
+        "created_at": "2014-10-22T18:12:30.000+04:00",
+        "updated_at": "2014-10-22T18:12:30.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133073188.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "completed": [
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Business cards",
+        "completed": false,
+        "created_at": "2014-09-04T19:53:04.000+04:00",
+        "updated_at": "2014-10-10T18:41:53.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "assignee": {
+          "id": 22,
+          "type": "Person",
+          "name": "Joe Danziger"
+        },
+        "completed_at": "2014-10-10T18:41:53.000+04:00",
+        "completer": {
+          "id": 22,
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123136306.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Walkthrough posts on the Blog",
+        "completed": false,
+        "created_at": "2014-09-04T20:21:52.000+04:00",
+        "updated_at": "2014-10-02T16:11:13.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Kevin van Zonneveld",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "completed_at": "2014-10-02T16:11:13.000+04:00",
+        "completer": {
+          "id": 22,
+          "name": "Kevin van Zonneveld"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.123146341.json",
+        "app_url": "http://example.com/"
+      }
+    ],
+    "trashed": []
+  },
+  "comments": [],
+  "subscribers": [
+    {
+      "id": 22,
+      "name": "Kevin van Zonneveld"
+    }
+  ]
+}
