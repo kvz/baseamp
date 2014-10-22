@@ -20,10 +20,10 @@ compile:
 	time make build
 
 run-export:
-	source env.sh && make build && ./bin/baseamp export ./test/fixtures/test.md
+	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp export ./test/fixtures/test.md
 
 run-import:
-	source env.sh && make build && ./bin/baseamp import ./test/fixtures/new.md
+	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp import ./test/fixtures/new.md
 
 watch:
 	watch -n 2 make -s compile

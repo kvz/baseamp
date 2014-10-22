@@ -5,6 +5,7 @@ var Baseamp = require("../");
 var baseamp = new Baseamp({
   username  : process.env.BASECAMP_USERNAME,
   password  : process.env.BASECAMP_PASSWORD,
+  account_id: process.env.BASECAMP_ACCOUNT_ID,
   project_id: process.env.BASECAMP_PROJECT_ID
 });
 

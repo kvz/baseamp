@@ -34,6 +34,7 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 
 
+account_id=xxx
 project_id=xxx
 todolist_id=xxx
 
@@ -42,13 +43,12 @@ due_at="${2}"
 content="${*:3}"
 
 if [ "${name}" = "kevin" ]; then
-  person_id=8958807
+  person_id=xxx
 elif [ "${name}" = "tim" ]; then
-  person_id=8958811
+  person_id=xxx
 else
-  echo "Please let me know ${name}'s id (https://basecamp.com/${project_id}/people)"
+  echo "Please let me know ${name}'s id (https://basecamp.com/${account_id}/people)"
   exit 1
-  person_id=8958811
 fi
 
 
@@ -72,7 +72,7 @@ curl \
   --header "User-Agent: Transloadit Basecamp Client (support@transloadit.com)" \
   --request "POST" \
   --data "${payload}" \
-https://basecamp.com/${project_id}/api/v1/projects/6904769/todolists/${todolist_id}/todos.json \
+https://basecamp.com/${account_id}/api/v1/projects/${project_id}/todolists/${todolist_id}/todos.json \
   |./JSON.sh -b |egrep '\["todos","remaining",\d+,"content"\]'
 
 
@@ -83,5 +83,5 @@ curl \
   --header "Content-Type: application/json" \
   --header "User-Agent: Transloadit Basecamp Client (support@transloadit.com)" \
   --request "GET" \
-https://basecamp.com/${project_id}/api/v1/projects/6904769/todolists/${todolist_id}.json \
+https://basecamp.com/${account_id}/api/v1/projects/${project_id}/todolists/${todolist_id}.json \
   |./JSON.sh -b |egrep '\["todos","remaining",\d+,"content"\]'
