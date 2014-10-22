@@ -39,7 +39,7 @@ class Baseamp
     request.get opts, (err, req, data) ->
       cb err, data
 
-  import: (file, cb) ->
+  getTodoLists: (cb) ->
     @_request @endpoints["todolists"], null, (err, todolists) =>
       if err
         return cb err
@@ -57,11 +57,18 @@ class Baseamp
 
       q.push todolist_urls
       q.drain = ->
-        debug util.inspect
-          todolists    :todolists
-          err          :err
-          todolist_urls:todolist_urls
-          file         :file
-        cb null
+        cb null, todolists
+
+  import: (file, cb) ->
+    @getTodoLists (err, todolists) ->
+      if err
+        return cb err
+
+      debug util.inspect
+        todolists    :todolists
+        file         :file
+
+      cb null
+
 
   module.exports = Baseamp
