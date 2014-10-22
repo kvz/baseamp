@@ -1,8 +1,11 @@
-request  = require "request"
-util     = require "util"
-async    = require "async"
-debug    = require("debug")("Baseamp:Baseamp")
-Mustache = require "mustache"
+request    = require "request"
+util       = require "util"
+_          = require "underscore"
+fs         = require "fs"
+async      = require "async"
+debug      = require("debug")("Baseamp:Baseamp")
+Mustache   = require "mustache"
+fixtureDir = "#{__dirname}/../test/fixtures"
 
 class Baseamp
   endpoints:
@@ -25,8 +28,9 @@ class Baseamp
         url: opts
 
     replace = @config
-    for key, val of opts.replace
-      replace[key] = val
+    if opts?.replace?
+      for key, val of opts.replace
+        replace[key] = val
 
     opts.url  = Mustache.render opts.url, replace
     opts.json = true
@@ -36,8 +40,27 @@ class Baseamp
     opts.headers =
       "User-Agent": "Baseamp (https://github.com/kvz/baseamp)"
 
-    request.get opts, (err, req, data) ->
+    request.get opts, (err, req, data) =>
+
+      fs.writeFileSync @_toFixtureName, JSON.stringify(@_toFixture(data), null, 2)
+
       cb err, data
+
+  _toFixture: (obj) ->
+    if !_.isObject(date) && !_.isArray(obj)
+      return obj
+
+    for key, val of obj
+      if _.isNumeric(val)
+        obj[key] = 1
+
+    return obj
+
+  _toFixtureName: (url) ->
+    parts     = url.split "/projects/"
+    url       = parts.pop()
+    filename  = fixtureDir + "/"
+    filename += url.replace /[^a-z0-9]/g, "."
 
   getTodoLists: (cb) ->
     @_request @endpoints["todolists"], null, (err, todolists) =>

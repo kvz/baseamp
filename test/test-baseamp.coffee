@@ -15,6 +15,7 @@ describe "baseamp", ->
       baseamp = new Baseamp
         username  : "test"
         password  : "test"
+        account_id: "test"
         project_id: "test"
 
       baseamp.import "#{fixtureDir}/imported.md", (err, data) ->
