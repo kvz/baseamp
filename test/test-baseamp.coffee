@@ -12,6 +12,7 @@ baseamp     = new Baseamp
   password  : "test"
   account_id: "test"
   project_id: "test"
+baseamp.endpoints.todolists = "file://{{{fixture_dir}}}/6904769.todolists.json"
 
 describe "baseamp", ->
   @timeout 10000 # <-- This is the Mocha timeout, allowing tests to run longer
@@ -43,5 +44,5 @@ describe "baseamp", ->
     it "should import todolists", (done) ->
       baseamp.import "#{fixture_dir}/imported.md", (err, data) ->
         expect(err).to.be.null
-        # data.should.equal "{ \"msg\": \"OK\" }"
+        expect(data).to.deep.equal "winning"
         done()

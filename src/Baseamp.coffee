@@ -32,7 +32,7 @@ class Baseamp
     return Mustache.render url, replace
 
   _request: (opts, data, cb) ->
-    if typeof opts == "string"
+    if _.isString(opts)
       opts =
         url: opts
 
@@ -44,10 +44,15 @@ class Baseamp
     opts.headers =
       "User-Agent": "Baseamp (https://github.com/kvz/baseamp)"
 
+    if opts.url.substr(0, 7) == "file://"
+      filename = opts.url.replace /^file\:\/\//, ""
+      json     = fs.readFileSync @_tmpltr(filename)
+      data     = JSON.parse json
+      return cb null, data
+
     request.get opts, (err, req, data) =>
-
-      fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)), JSON.stringify(@_toFixture(data), null, 2)
-
+      if opts.url.substr(0, 7) != "file://"
+        fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)), JSON.stringify(@_toFixture(data), null, 2)
       cb err, data
 
   _toFixtureVal: (val, key) ->
@@ -94,10 +99,14 @@ class Baseamp
       if err
         return cb err
 
-      todolist_urls = (todolist.url for todolist in todolists)
-      todolists     = {}
+      todolist_urls = (todolist.url for todolist in todolists when todolist.url)
+      if !todolist_urls.length
+        debug util.inspect
+          todolists: todolists
+        return cb new Error "Found no urls in todolists"
+
+      todolists = {}
       q = async.queue (url, callback) =>
-        debug url
         @_request url, null, (err, todolist) =>
           if err
             debug err
@@ -113,12 +122,7 @@ class Baseamp
     @getTodoLists (err, todolists) ->
       if err
         return cb err
-
-      debug util.inspect
-        todolists    :todolists
-        file         :file
-
-      cb null
+      cb null, "winning"
 
 
   module.exports = Baseamp
