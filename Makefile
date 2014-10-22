@@ -19,6 +19,12 @@ compile:
 	@echo "Compiling files"
 	time make build
 
+run-export:
+	source env.sh && make build && ./bin/baseamp export ./test/fixtures/test.md
+
+run-import:
+	source env.sh && make build && ./bin/baseamp import ./test/fixtures/new.md
+
 watch:
 	watch -n 2 make -s compile
 
@@ -37,4 +43,14 @@ release-patch: build test
 	git push
 	npm publish
 
-.PHONY: test lint build release compile watch
+.PHONY: \
+	test \
+	lint \
+	build \
+	run-import \
+	run-export \
+	release-major \
+	release-minor \
+	release-patch \
+	compile \
+	watch

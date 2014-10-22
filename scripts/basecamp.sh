@@ -34,8 +34,8 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 
 
-project_id=2732531
-todolist_id=21398991
+project_id=xxx
+todolist_id=xxx
 
 name="${1}"
 due_at="${2}"

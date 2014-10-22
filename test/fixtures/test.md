@@ -1,0 +1,26 @@
+# Kevin's Transloadit Tasks
+
+- [ ] CRM's System libxml is linked dynamically into PHP. Issue is closed to cleanup for Fahad, but still needs looking into: https://github.com/transloadit/transloadit-CRM/issues/3
+- [ ] Refactor: a robot default that by defaults _.defaults() this.defaultIntstructions, removing code from normalize.
+- [ ] CRM: Investigate json editor space insertion https://transloadit.
+- [ ] Why is the ratelimiter set to 9 day bans?
+- [ ] CRM: always show the `use` parameter, even if it's just one step https://transloadit.com/demos/s3-store/store-uploaded-files
+- [ ] CRM: Jekyll-fy more in ./views/pages/*.ctp
+- [ ] Move all scripts that rely on ./lib from ./scripts to api2/{bin,lib,tool}
+- [ ] If there's a crash in autoscaler such as DNS getaddrinfo ENOTFOUND, processes keep building up. That will eventually destroy the machine. debug & prevent that
+- [ ] Bring back ELB vs Route53 loadbalancing
+- [ ] Throw an error when notify_url redirects: http://support.transloadit.com/discussions/questions/90663-reading-post-data-from-response
+- [ ] Launch a Riak cluster via Terraform. Blog on it. Add backups. https://github.com/kvz/riak-formation
+- [ ] Add a demo for file/filter http://support.transloadit.com/discussions/questions/91572-re-transloadit-greetings-from-one-of-the-co-founders#comment_34533325
+- [ ] Add support for 3 more parameters to html/convert bot: http://support.transloadit.com/discussions/questions/91523-alpha-masking
+- [ ] Logrotate on CRM boxes for `/srv/transloadit-crm/shared/log` (3.6G nginx.access.log, 1.9G crm-cron-cake-calc_revenue.log)
+- [ ] Use Airbud in InstanceFetcher
+- [ ] CRM: Add Oracle & rapgenius logo. Cambridge logo and the one next to it have a white bg.
+- [ ] Add librato alerts e.g. for high cellcount / mem usage / assembly errors
+- [ ] Make documentation a separate markdown repo. Base off of shiny.
+- [ ] November 1st: Discount queue live: https://mail.google.com/mail/u/0/#search/label%3Atransloadit+is%3Aunread/14834400ac31de1b
+- [ ] Replace Jenkins with [StriderCD](http://fosterelli.co/creating-a-private-ci-with-strider.html) or [drone](https://github.com/drone/drone) or [buildbot](https://github.com/buildbot/buildbot)
+- [ ] Implement 3 params for html bot http://support.transloadit.com/discussions/questions/91523-alpha-masking
+- [ ] Add params to template api docs as suggested on https://twitter.com/etobi/status/515411861282783233
+- [ ] Create /queues API2 endpoint that statuspage & GlobalMetricsReporter can use. Now we directly push to statuspage (bah). And have GMR directly connect to redis (bah).
+- [ ] Create an ubuntufy script, and IAM it via http://www.packer.io/. We can run the ubuntufy by hand on Iron. Then we can ditch ubuntu* and deb scripts.

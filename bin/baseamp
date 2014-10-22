@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+var coffee  = require("coffee-script/register");
+var Baseamp = require("../");
+
+var baseamp = new Baseamp({
+  username  : process.env.BASECAMP_USERNAME,
+  password  : process.env.BASECAMP_PASSWORD,
+  project_id: process.env.BASECAMP_PROJECT_ID
+});
+
+var action = process.argv[2];
+var file   = process.argv[3];
+
+baseamp[action](file, function(err) {
+  if (err) {
+    throw err
+  }
+
+  console.log("Done")
+})
+
