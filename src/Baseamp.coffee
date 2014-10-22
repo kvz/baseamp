@@ -1,14 +1,15 @@
-request    = require "request"
-util       = require "util"
-_          = require "underscore"
-fs         = require "fs"
-async      = require "async"
-debug      = require("debug")("Baseamp:Baseamp")
-Mustache   = require "mustache"
+request  = require "request"
+util     = require "util"
+_        = require "underscore"
+fs       = require "fs"
+async    = require "async"
+debug    = require("debug")("Baseamp:Baseamp")
+Mustache = require "mustache"
+TodoList = require "./TodoList"
 
 class Baseamp
   endpoints:
-    todolists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
+    todoLists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
 
   constructor: (config) ->
     @config = config || {}
@@ -52,7 +53,8 @@ class Baseamp
 
     request.get opts, (err, req, data) =>
       if opts.url.substr(0, 7) != "file://"
-        fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)), JSON.stringify(@_toFixture(data), null, 2)
+        fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)),
+          JSON.stringify(@_toFixture(data), null, 2)
       cb err, data
 
   _toFixtureVal: (val, key) ->
@@ -95,34 +97,47 @@ class Baseamp
     return filename
 
   getTodoLists: (cb) ->
-    @_request @endpoints["todolists"], null, (err, todolists) =>
+    @_request @endpoints["todoLists"], null, (err, index) =>
       if err
         return cb err
 
-      todolist_urls = (todolist.url for todolist in todolists when todolist.url)
-      if !todolist_urls.length
-        debug util.inspect
-          todolists: todolists
-        return cb new Error "Found no urls in todolists"
+      # Determine lists to retrieve
+      retrieveUrls = (item.url for item in index when item.url?)
+      if !retrieveUrls.length
+        return cb new Error "Found no urls in index"
 
-      todolists = {}
+      # The queue worker to retrieve the lists
+      lists = []
       q = async.queue (url, callback) =>
-        @_request url, null, (err, todolist) =>
+        @_request url, null, (err, todoList) ->
           if err
-            debug err
-          todolists[url] = todolist
+            debug "Error retrieving #{url}. #{err}"
+          lists.push new TodoList todoList
           callback()
       , 4
 
-      q.push todolist_urls
+      q.push retrieveUrls
+
+      # Return
       q.drain = ->
-        cb null, todolists
+        cb null, lists
 
   import: (file, cb) ->
-    @getTodoLists (err, todolists) ->
+    @getTodoLists (err, todoLists) ->
       if err
         return cb err
+
+      buf = ""
+      for todoList in todoLists
+        buf += todoList.toMarkdown()
+
+      if file == "-"
+        console.log buf
+      else
+        console.log "Writing todo to #{file}"
+        fs.writeFileSync file, buf
+
       cb null, "winning"
 
 
-  module.exports = Baseamp
+module.exports = Baseamp
