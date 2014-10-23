@@ -1,7 +1,8 @@
-util       = require "util"
-moment     = require "moment"
-_          = require "underscore"
-debug      = require("debug")("Baseamp:Todo")
+util   = require "util"
+moment = require "moment"
+_      = require "underscore"
+debug  = require("debug")("Baseamp:Todo")
+Util   = require "./Util"
 
 class Todo
   constructor: (todo) ->
@@ -14,18 +15,12 @@ class Todo
     @content  = todo.content
     @category = todo.category
 
-  fromMarkdown: (str) ->
+  fromMarkdown: (line) ->
     # Trim dashes and whitespace
-    str = str.replace /^[\s\-]+|[\s\-]+$/g, ""
+    line = line.replace /^[\s\-]+|[\s\-]+$/g, ""
 
     # Get ID first from the end of the line
-    id = undefined
-    m  = str.match /\s+\(#(\d+)\)$/
-    if m?[1]
-      id = m[1]
-      # Remove ID from the end of the line
-      str = str.replace m[0], ""
-
+    {id, line} = Util.extractId line
 
     # Parse the other parts
     pattern  = "^"
@@ -35,9 +30,9 @@ class Todo
     pattern += "(.+)"                           # text
     pattern += "$"
 
-    m = str.match new RegExp pattern
+    m = line.match new RegExp pattern
     if !m
-      throw new Error "Cannot match '#{str}'"
+      throw new Error "Cannot match '#{line}'"
 
     todo =
       due_at  : m[3]

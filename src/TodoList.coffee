@@ -3,6 +3,7 @@ moment = require "moment"
 _      = require "underscore"
 debug  = require("debug")("Baseamp:TodoList")
 Todo   = require "./Todo"
+Util   = require "./Util"
 
 class TodoList
   constructor: (todoList) ->
@@ -28,7 +29,10 @@ class TodoList
     lines = str.split "\n"
     for line in lines
       if line.substr(0, 2) == "##"
-        todoList.name = line.replace /^##\s+/, ""
+        {id, line}    = Util.extractId line
+        todoList.id   = id
+        todoList.name = line
+
         continue
 
       if !line.trim()
