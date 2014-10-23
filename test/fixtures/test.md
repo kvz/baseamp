@@ -1,4 +1,4 @@
-## Kevin's Transloadit Tasks
+## Kevin's Transloadit Tasks (#22)
 
 - [x] CRM's System libxml is linked dynamically into PHP. Issue is closed to cleanup for Fahad, but still needs looking into: https://github.com/transloadit/transloadit-CRM/issues/3
 - [x] Add support for 3 more parameters to html/convert bot: http://support.transloadit.com/discussions/questions/91523-alpha-masking
@@ -9,3 +9,5 @@
 - [ ] Add librato alerts e.g. for high cellcount / mem usage / assembly errors
 - [ ] Create /queues API2 endpoint that statuspage & GlobalMetricsReporter can use. Now we directly push to statuspage (bah). And have GMR directly connect to redis (bah).
 - [ ] Create an ubuntufy script, and IAM it via http://www.packer.io/. We can run the ubuntufy by hand on Iron. Then we can ditch ubuntu* and deb scripts.
+
+

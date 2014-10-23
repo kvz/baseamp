@@ -7,11 +7,11 @@ Util   = require "./Util"
 
 class TodoList
   constructor: (todoList) ->
-    @name  = ""
     @todos = []
     if _.isString(todoList)
       todoList = @fromMarkdown todoList
 
+    @id   = todoList.id
     @name = todoList.name
 
     for category, todos of todoList.todos
@@ -28,22 +28,25 @@ class TodoList
     str   = "#{str}".replace "\r", ""
     lines = str.split "\n"
     for line in lines
-      if line.substr(0, 2) == "##"
-        {id, line}    = Util.extractId line
+      # Extract Header
+      m = line.match /^##\s+(.+)$/
+      if m
+        {id, line}    = Util.extractId m[1]
         todoList.id   = id
         todoList.name = line
-
         continue
 
+      # Ignore empty line
       if !line.trim()
         continue
 
+      # Add todo
       todoList.todos.all.push new Todo line
 
     return todoList
 
   toMarkdown: ->
-    buf = "## #{@name}\n"
+    buf = "## #{@name} (##{@id})\n"
     buf += "\n"
 
     for todo in @todos

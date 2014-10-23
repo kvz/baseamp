@@ -156,6 +156,7 @@ class Baseamp
     # if someone else added an item to Basecamp. Let's just only check
     # items off. (I think Basecamp also doesn't let you easily delete items)
     debug util.inspect
+      parts: parts
       todoList: todoLists[0].todos
 
       cb null, "winning"
