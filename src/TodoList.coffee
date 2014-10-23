@@ -5,9 +5,9 @@ debug  = require("debug")("Baseamp:TodoList")
 Todo   = require "./Todo"
 
 class TodoList
-  name : ""
-  todos: []
   constructor: (todoList) ->
+    @name  = ""
+    @todos = []
     if _.isString(todoList)
       todoList = @fromMarkdown todoList
 
@@ -20,18 +20,20 @@ class TodoList
         @todos.push new Todo todo
 
   fromMarkdown: (str) ->
-    todoList = {
+    todoList =
       todos:
         all: []
-    }
-    str      = "#{str}".replace "\r", ""
-    lines    = str.split "\n"
+
+    str   = "#{str}".replace "\r", ""
+    lines = str.split "\n"
     for line in lines
       if line.substr(0, 2) == "##"
         todoList.name = line.replace /^##\s+/, ""
         continue
+
       if !line.trim()
         continue
+
       todoList.todos.all.push new Todo line
 
     return todoList
@@ -43,7 +45,7 @@ class TodoList
     for todo in @todos
       buf += todo.toMarkdown()
 
-    buf += "\n\n"
+    buf += "\n"
 
     return buf
 

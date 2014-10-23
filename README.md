@@ -22,7 +22,7 @@ npm install --save baseamp
 
 ## Todo
 
-- [ ] Fix import bug duplicating todos over different lists
+ - [x] Fix import bug duplicating todos over different lists
 
 ## Contribute
 

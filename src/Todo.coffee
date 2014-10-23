@@ -88,7 +88,7 @@ class Todo
       buf += @_formatDate(@due_at) + " "
 
     if @assignee?
-      buf += @_formatName @assignee + " "
+      buf += @_formatName(@assignee) + " "
 
     buf += "#{@content} "
 

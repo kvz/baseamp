@@ -112,7 +112,8 @@ class Baseamp
         @_request url, null, (err, todoList) ->
           if err
             debug "Error retrieving #{url}. #{err}"
-          lists.push new TodoList todoList
+
+          lists.push new TodoList(todoList)
           callback()
       , 4
 
