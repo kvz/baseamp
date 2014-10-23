@@ -42,7 +42,7 @@ describe "baseamp", ->
 
   describe "import", ->
     it "should import todolists", (done) ->
-      baseamp.import "#{fixture_dir}/imported.md", (err, data) ->
+      baseamp.import "/dev/null", (err, data) ->
         expect(err).to.be.null
         expect(data).to.deep.equal "winning"
         done()
