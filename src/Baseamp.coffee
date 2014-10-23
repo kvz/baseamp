@@ -150,6 +150,11 @@ class Baseamp
       part     = "###{part}"
       todoLists.push new TodoList part
 
+    # @todo update todos whos ID is known.
+    # create others
+    # * what about delete? <-- we cannot do delete as we cannot know
+    # if someone else added an item to Basecamp. Let's just only check
+    # items off. (I think Basecamp also doesn't let you easily delete items)
     debug util.inspect
       todoList: todoLists[0].todos
 
