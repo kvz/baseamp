@@ -40,9 +40,13 @@ describe "baseamp", ->
 
       done()
 
-  describe "import", ->
-    it "should import todolists", (done) ->
-      baseamp.import "/dev/null", (err, data) ->
-        expect(err).to.be.null
-        expect(data).to.deep.equal "winning"
+  describe "getTodoLists", ->
+    it "should retrieve todoLists", (done) ->
+      baseamp.getTodoLists (err, todoLists) ->
+
+        # debug util.inspect
+        #   todoLists: todoLists[0]
+
+        expect(todoLists[0].name).to.deep.equal "Uncategorized"
+        expect(todoLists[0].todos.remaining[0].content).to.deep.equal "Transloadify Blogpost (with animated Gif!)"
         done()

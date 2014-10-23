@@ -12,11 +12,16 @@ var baseamp = new Baseamp({
 var action = process.argv[2];
 var file   = process.argv[3];
 
-baseamp[action](file, function(err) {
+baseamp[action](file, function(err, stdout, stderr) {
   if (err) {
-    throw err
+    throw err;
   }
 
-  console.log("Done")
-})
+  if (stderr) {
+    console.error(stderr);
+  }
+  if (stdout) {
+    console.log(stdout);
+  }
+});
 

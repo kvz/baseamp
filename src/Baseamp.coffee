@@ -1,11 +1,12 @@
-request  = require "request"
-util     = require "util"
-_        = require "underscore"
-fs       = require "fs"
-async    = require "async"
-debug    = require("debug")("Baseamp:Baseamp")
-Mustache = require "mustache"
-TodoList = require "./TodoList"
+request   = require "request"
+util      = require "util"
+_         = require "underscore"
+fs        = require "fs"
+async     = require "async"
+debug     = require("debug")("Baseamp:Baseamp")
+Mustache  = require "mustache"
+TodoList  = require "./TodoList"
+TodoLists = require "./TodoLists"
 
 class Baseamp
   endpoints:
@@ -113,7 +114,7 @@ class Baseamp
           if err
             debug "Error retrieving #{url}. #{err}"
 
-          lists.push new TodoList(todoList)
+          lists.push todoList
           callback()
       , 4
 
@@ -128,38 +129,35 @@ class Baseamp
       if err
         return cb err
 
-      buf = ""
-      for todoList in todoLists
-        buf += todoList.toMarkdown()
+      todoLists = new TodoLists todoLists
+      buf       = todoLists.toMarkdown()
 
       if file == "-"
-        console.log buf
+        stderr = ""
+        stdout = buf
       else
-        console.log "Writing todo to #{file}"
-        fs.writeFileSync file, buf
+        stderr = "Writing todo to #{file}\n"
+        stdout = ""
+        fs.writeFileSync file, stdout, "utf-8"
 
-      cb null, "winning"
+      cb null, stdout, stderr
 
   export: (file, cb) ->
     # @todo add support for STDIN here via file == '-'
-    buf   = fs.readFileSync file, "utf-8"
-    parts = buf.split /^##/
-
-    todoLists = []
-    for part in parts
-      part     = "###{part}"
-      todoLists.push new TodoList part
+    buf       = fs.readFileSync file, "utf-8"
+    todoLists = new TodoLists buf
 
     # @todo update todos whos ID is known.
     # create others
     # * what about delete? <-- we cannot do delete as we cannot know
     # if someone else added an item to Basecamp. Let's just only check
     # items off. (I think Basecamp also doesn't let you easily delete items)
-    debug util.inspect
-      parts: parts
-      todoList: todoLists[0].todos
 
-      cb null, "winning"
+    debug util.inspect
+      todoLists: todoLists
+      todoList : todoLists.lists[0]
+
+    cb null, "winning"
 
 
 module.exports = Baseamp
