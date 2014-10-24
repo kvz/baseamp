@@ -9,8 +9,11 @@ class TodoLists
   constructor: (todoLists) ->
     if _.isString(todoLists)
       todoLists = @fromMarkdown todoLists
-
-    @lists = todoLists?.lists || []
+      @lists = todoLists?.lists || []
+    else
+      @lists = []
+      for l in todoLists
+        @lists.push new TodoList l
 
   fromMarkdown: (str) ->
     parts = str.split /^##\s+/m
