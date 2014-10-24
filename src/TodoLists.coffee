@@ -6,25 +6,39 @@ TodoList = require "./TodoList"
 Util     = require "./Util"
 
 class TodoLists
-  constructor: (todoLists) ->
-    if _.isString(todoLists)
-      todoLists = @fromMarkdown todoLists
-      @lists = todoLists?.lists || []
+  constructor: (input) ->
+    if !input?
+      todoLists = {}
+    else if _.isString input
+      todoLists = @fromMarkdown input
     else
-      @lists = []
-      for l in todoLists
-        @lists.push new TodoList l
+      todoLists = @fromApi input
 
-  fromMarkdown: (str) ->
-    parts = str.split /^##\s+/m
+    # @id    = todoList.id
+    # @name  = todoList.name
+    @lists = todoLists.lists
 
-    # debug util.inspect
-    #   str  : str
-    #   parts: parts
 
+  fromApi: (input) ->
+    # This nesting screems for refactoring at first sight.
+    # But we may want fromMarkdown to know/parse more properties than just
+    # the lists.
+    # Also, now all fromApi & fromMarkdown methods return an object
+    # which is nice & consistent.
+    # So please leave it : )
     todoLists =
       lists: []
 
+    for list in input
+      todoLists.lists.push new TodoList list
+
+    return todoLists
+
+  fromMarkdown: (str) ->
+    todoLists =
+      lists: []
+
+    parts = str.split /^##\s+/m
     for part in parts
       if !part.trim()
         continue

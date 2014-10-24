@@ -6,24 +6,35 @@ Todo   = require "./Todo"
 Util   = require "./Util"
 
 class TodoList
-  constructor: (todoList) ->
-    @todos = []
-    if _.isString(todoList)
-      todoList = @fromMarkdown todoList
+  constructor: (input) ->
+    if !input?
+      todoList = {}
+    else if _.isString(input)
+      todoList = @fromMarkdown(input)
+    else
+      todoList = @fromApi(input)
 
-    @id   = todoList.id
-    @name = todoList.name
+    @id    = todoList.id
+    @name  = todoList.name
+    @todos = todoList.todos
 
-    for category, todos of todoList.todos
-      for todo in todos
-        if !todo.category
-          todo.category = category
-        @todos.push new Todo todo
+  fromApi: (input) ->
+    todoList =
+      id   : input.id
+      name : input.name
+      todos: []
+
+    for category, apiTodos of input.todos
+      for apiTodo in apiTodos
+        todo = new Todo apiTodo
+        if todo?
+          todoList.todos.push todo
+
+    return todoList
 
   fromMarkdown: (str) ->
     todoList =
-      todos:
-        all: []
+      todos: []
 
     str   = "#{str}".replace "\r", ""
     lines = str.split "\n"
@@ -41,7 +52,9 @@ class TodoList
         continue
 
       # Add todo
-      todoList.todos.all.push new Todo line
+      todo = new Todo line
+      if todo?
+        todoList.todos.push todo
 
     return todoList
 

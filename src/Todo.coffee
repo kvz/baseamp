@@ -5,15 +5,40 @@ debug  = require("debug")("Baseamp:Todo")
 Util   = require "./Util"
 
 class Todo
-  constructor: (todo) ->
-    if _.isString(todo)
-      todo = @fromMarkdown todo
+  constructor: (input) ->
+    if !input?
+      todo = {}
+    else if _.isString(input)
+      todo = @fromMarkdown(input)
+    else
+      todo = @fromApi(input)
+
+    if !todo?
+      return
 
     @due_at   = todo.due_at
-    @assignee = todo.assignee?.name || todo.assignee
+    @assignee = todo.assignee
     @id       = todo.id
     @content  = todo.content
     @category = todo.category
+
+  fromApi: (input) ->
+    category = "remaining"
+
+    if input.completed == true
+      category = "completed"
+
+    if input.trashed == true
+      category = "trashed"
+
+    todo =
+      due_at  : input.due_at
+      assignee: input.assignee?.name || input.assignee
+      id      : input.id
+      content : input.content
+      category: category
+
+    return todo
 
   fromMarkdown: (line) ->
     # Trim dashes and whitespace
@@ -32,7 +57,8 @@ class Todo
 
     m = line.match new RegExp pattern
     if !m
-      throw new Error "Cannot match '#{line}'"
+      debug "Cannot match '#{line}'"
+      return null
 
     todo =
       due_at  : m[3]
