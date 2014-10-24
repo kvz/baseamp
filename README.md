@@ -19,6 +19,40 @@ npm install --save baseamp
 
 ## Use
 
+First set these environment keys:
+
+```
+export BASECAMP_USERNAME="<your private username>"
+export BASECAMP_PASSWORD="<your private password>"
+export BASECAMP_ACCOUNT_ID="<your private account id (1st number in urls)>"
+export BASECAMP_PROJECT_ID="<your private project id (2nd number in urls)>"
+```
+
+**WARNING: Use a test Project first, Baseamp will overwrite todos in existing projects!**
+
+To import (from Basecamp API -> local markdown):
+
+```bash
+$ ./bin/baseamp import -
+## Bugs (this list should always be emptied first) (#21402412)
+
+ - [ ] TIK Big file upload lists can exceed the assemblies.files database field length: http://support.transloadit.com/discussions/problems/13485-problem-with-assemblies-page-files-display (#133063190)
+ - [ ] TIK result: false is ignored if step is piped into a storage step (#133071595)
+
+## Documentation (#21403029)
+
+ - [ ] Add ffmpeg new stack lists, link them, show lists which formats they support and which not directly in the docs, when one should use which and then also show the preset contents for each stack version (#133067237)
+
+...etc...
+```
+
+To export (from local markdown -> Basecamp API):
+
+To import (from Basecamp API -> local markdown):
+
+```bash
+$ ./bin/baseamp export ./Our-Todos.md
+```
 
 ## Todo
 
@@ -37,6 +71,13 @@ This project is written in [CoffeeScript](http://coffeescript.org/), but the Jav
 Run tests via `make test`.
 
 To single out a test use `make test GREP=30x`
+
+### Development use
+
+```bash
+make run-import
+make run-export
+```
 
 ### Release
 
