@@ -13,10 +13,10 @@ class TodoLists
     @lists = todoLists?.lists || []
 
   fromMarkdown: (str) ->
-    parts = str.split /^##\s+/
+    parts = str.split /^##\s+/m
 
     # debug util.inspect
-    #   buf  : buf
+    #   str  : str
     #   parts: parts
 
     todoLists =
