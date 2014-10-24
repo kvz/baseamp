@@ -3,7 +3,7 @@
   "name": "API Refactorings and minor feature additions",
   "description": "",
   "created_at": "2014-10-22T17:49:33.000+04:00",
-  "updated_at": "2014-10-22T20:23:09.000+04:00",
+  "updated_at": "2014-10-24T12:16:38.000+04:00",
   "completed": false,
   "position": 22,
   "private": false,
@@ -392,6 +392,28 @@
           "fullsize_avatar_url": "http://example.com/"
         },
         "url": "file://{{{fixture_dir}}}/6904769.todos.133121811.json",
+        "app_url": "http://example.com/"
+      },
+      {
+        "id": 22,
+        "todolist_id": 22,
+        "position": 22,
+        "content": "Add zoom: false support to /video/encode",
+        "completed": false,
+        "created_at": "2014-10-24T12:16:30.000+04:00",
+        "updated_at": "2014-10-24T12:16:38.000+04:00",
+        "comments_count": 22,
+        "private": false,
+        "trashed": false,
+        "due_on": null,
+        "due_at": null,
+        "creator": {
+          "id": 22,
+          "name": "Tim Koschützki",
+          "avatar_url": "http://example.com/",
+          "fullsize_avatar_url": "http://example.com/"
+        },
+        "url": "file://{{{fixture_dir}}}/6904769.todos.133534774.json",
         "app_url": "http://example.com/"
       }
     ],
