@@ -9,7 +9,7 @@ TodoList  = require "./TodoList"
 TodoLists = require "./TodoLists"
 
 class Baseamp
-  vcr: true
+  vcr: false
   endpoints:
     todoLists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
 
@@ -54,7 +54,8 @@ class Baseamp
       return cb null, data
 
     request.get opts, (err, req, data) =>
-      if Basecamp::vcr == true && opts.url.substr(0, 7) != "file://"
+      if @vcr == true && opts.url.substr(0, 7) != "file://"
+        debug "VCR: Recording #{opts.url} to disk so we can watch later : )"
         fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)),
           JSON.stringify(@_toFixture(data), null, 2)
       cb err, data
