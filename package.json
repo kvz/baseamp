@@ -34,6 +34,10 @@
   "directories": {
     "lib": "./lib"
   },
+  "preferGlobal": true,
+  "bin": {
+    "baseamp": "./bin/baseamp.js"
+  },
   "scripts": {
     "test": "make test"
   },

@@ -11,10 +11,10 @@ Convert your Markdown todo lists to Basecamp Todolists and back
 
 ## Install
 
-Inside your project, type
+Being a commandline tool primarily, Baseamp prefers to be installed globally:
 
 ```bash
-npm install --save baseamp
+npm install -g baseamp
 ```
 
 ## Use
@@ -33,7 +33,7 @@ export BASECAMP_PROJECT_ID="<your private project id (2nd number in urls)>"
 To import (from Basecamp API -> local markdown):
 
 ```bash
-$ ./bin/baseamp import -
+$ baseamp import -
 ## Bugs (this list should always be emptied first) (#21402412)
 
  - [ ] TIK Big file upload lists can exceed the assemblies.files database field length: http://support.transloadit.com/discussions/problems/13485-problem-with-assemblies-page-files-display (#133063190)
@@ -51,7 +51,7 @@ To export (from local markdown -> Basecamp API):
 To import (from Basecamp API -> local markdown):
 
 ```bash
-$ ./bin/baseamp export ./Our-Todos.md
+$ baseamp export ./Our-Todos.md
 ```
 
 ## Todo
@@ -73,6 +73,13 @@ Run tests via `make test`.
 To single out a test use `make test GREP=30x`
 
 ### Development use
+
+```bash
+source env.sh
+./bin/baseamp.js import
+```
+
+Or use Makefile shortcuts
 
 ```bash
 make run-import

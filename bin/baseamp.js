@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-var coffee  = require("coffee-script/register");
+// No coffee needed as this sources ./lib, not ./src:
+// var coffee  = require("coffee-script/register");
 var Baseamp = require("../");
 
 var baseamp = new Baseamp({
