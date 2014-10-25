@@ -13,6 +13,10 @@ var baseamp = new Baseamp({
 var action = process.argv[2];
 var file   = process.argv[3];
 
+if (!(action in baseamp)) {
+  action = "help";
+}
+
 baseamp[action](file, function(err, stdout, stderr) {
   if (err) {
     throw err;
@@ -25,4 +29,3 @@ baseamp[action](file, function(err, stdout, stderr) {
     console.log(stdout);
   }
 });
-

@@ -76,7 +76,7 @@ To single out a test use `make test GREP=30x`
 
 ```bash
 source env.sh
-./bin/baseamp.js import
+DEBUG=Baseamp:* ./bin/baseamp.js import
 ```
 
 Or use Makefile shortcuts

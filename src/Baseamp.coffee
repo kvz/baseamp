@@ -126,6 +126,33 @@ class Baseamp
       q.drain = ->
         cb null, lists
 
+  version: (file, cb) ->
+    pjson = require "../package.json"
+    stdout  = ""
+    stderr  = ""
+    stderr += "v#{pjson.version}"
+    cb null, stdout, stderr
+
+  help: (file, cb) ->
+    pjson = require "../package.json"
+
+    stdout  = ""
+    stderr  = ""
+    stderr += "#{pjson.name} v#{pjson.version}\n"
+    stderr += " \n"
+    stderr += " Usage:\n"
+    stderr += " \n"
+    stderr += "   #{pjson.name} action [args]\n"
+    stderr += " \n"
+    stderr += " Actions:\n"
+    stderr += " \n"
+    stderr += "   import [file]  Downloads latest todos from Basecamp, saved to file or STDOUT(-)\n"
+    stderr += "   export [file]  Uploads latest todos to Basecamp, sourcing from file or STDIN(-)\n"
+    stderr += "  version         Reports version\n"
+    stderr += "     help         This page\n"
+
+    cb null, stdout, stderr
+
   import: (file, cb) ->
     @getTodoLists (err, todoLists) ->
       if err
