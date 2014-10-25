@@ -3,15 +3,25 @@
 // var coffee  = require("coffee-script/register");
 var Baseamp = require("../");
 
-var baseamp = new Baseamp({
-  username  : process.env.BASECAMP_USERNAME,
-  password  : process.env.BASECAMP_PASSWORD,
-  account_id: process.env.BASECAMP_ACCOUNT_ID,
-  project_id: process.env.BASECAMP_PROJECT_ID
-});
+var required = [ "username", "password", "account_id", "project_id" ];
+var config   = {};
+for (var i in required) {
+  var cfgKey = required[i];
+  var envKey = "BASECAMP_" + cfgKey.toUpperCase();
 
-var action = process.argv[2];
-var file   = process.argv[3];
+  if (!(envKey in process.env)) {
+    console.error("Please first set the following environment key: " + envKey);
+    if (cfgKey == "project_id") {
+      console.error("Warning, first use a new/empty project before trying this on the real thing!");
+    }
+    process.exit(1);
+  }
+  config[cfgKey] = process.env[envKey];
+}
+
+var baseamp = new Baseamp(config);
+var action  = process.argv[2];
+var file    = process.argv[3];
 
 if (!(action in baseamp)) {
   action = "help";
