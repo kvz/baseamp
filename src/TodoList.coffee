@@ -16,9 +16,10 @@ class TodoList
 
     _.defaults todoList, defaults
 
-    @id    = todoList.id
-    @name  = todoList.name
-    @todos = todoList.todos
+    @id       = todoList.id
+    @name     = todoList.name
+    @position = todoList.position
+    @todos    = todoList.todos
 
   fromApi: (input) ->
     todoList =

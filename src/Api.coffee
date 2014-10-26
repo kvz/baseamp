@@ -26,8 +26,16 @@ class Api
       @config.fixture_dir = "#{__dirname}/../test/fixtures"
 
   uploadTodoLists: (todoLists, cb) ->
-    debug util.inspect
-      todoLists: todoLists
+    for list in todoLists.lists
+      
+      debug util.inspect
+        list: list.name
+        id: list.id
+      for todo in list.todos
+        debug util.inspect
+          todo: todo.content
+          id: todo.id
+
     cb null
 
 
@@ -63,9 +71,10 @@ class Api
       opts =
         url: opts
 
-    opts.url  = Util.template opts.url, @config, opts.replace
-    opts.json = true
-    opts.auth =
+    opts.url    = Util.template opts.url, @config, opts.replace
+    opts.method = "get"
+    opts.json   = true
+    opts.auth   =
       username: @config.username
       password: @config.password
     opts.headers =
@@ -77,7 +86,7 @@ class Api
       data     = JSON.parse json
       return cb null, data
 
-    request.get opts, (err, req, data) =>
+    request[opts.method] opts, (err, req, data) =>
       if @vcr == true && opts.url.substr(0, 7) != "file://"
         debug "VCR: Recording #{opts.url} to disk so we can watch later : )"
         fs.writeFileSync Util.template(@_toFixtureFile(opts.url), @config),
