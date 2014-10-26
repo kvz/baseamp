@@ -66,6 +66,12 @@ When downloading, Baseamp:
 
  - Extracts full Todolists of a project, and saves them to a markdown file (or STDOUT), overwriting anything that was already there.
 
+Baseamp cannot sync a todo's attachments or contents, but also won't override them, so you can safely use the webinterface to enrich todos.
+
+There is no concept of sub-todos.
+
+You should do a *download* after every *upload*, in order to save the IDs locally of newly created todos.
+
 ## Todo
 
  - [x] Rename download to download, upload to upload

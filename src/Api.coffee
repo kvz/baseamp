@@ -8,9 +8,10 @@ fs      = require "fs"
 async   = require "async"
 
 class Api
-  vcr: false
+  vcr      : false
   endpoints:
     todoLists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
+    todoList : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{todolist_id}}}.json"
 
   constructor: (config) ->
     @config = config || {}
@@ -25,16 +26,57 @@ class Api
     if !@config.fixture_dir?
       @config.fixture_dir = "#{__dirname}/../test/fixtures"
 
-  uploadTodoLists: (todoLists, cb) ->
-    for list in todoLists.lists
-      
+  listExists: (id, cb) ->
+    opts =
+      method : "get"
+      url    : @endpoints["todoList"]
+      replace:
+        todolist_id: id
+
+    @_request opts, null, (err, data) ->
+      if err
+        if "#{err}".match /404/
+          return cb null, false
+        return cb err
+
       debug util.inspect
-        list: list.name
-        id: list.id
-      for todo in list.todos
-        debug util.inspect
-          todo: todo.content
-          id: todo.id
+        opts: opts
+        err : err
+        data: data
+
+      cb null, true
+
+  uploadTodoLists: (todoLists, cb) =>
+    for list in todoLists.lists
+      @listExists list.id, (err, listExists) =>
+        opts =
+          method: "post"
+          url   : @endpoints["todoLists"]
+
+        payload =
+          name: list.name
+
+        if listExists
+          opts.method  = "put"
+          opts.url     = @endpoints["todoList"]
+          opts.replace =
+            todolist_id: list.id
+
+          payload.position = list.position
+
+        @_request opts, list, (err, data) =>
+          debug util.inspect
+            opts      : opts
+            payload   : payload
+            listExists: listExists
+            err       : err
+            data      : data
+
+          process.exit 0
+          for todo in list.todos
+            debug util.inspect
+              todo: todo.content
+              id  : todo.id
 
     cb null
 
@@ -71,13 +113,13 @@ class Api
       opts =
         url: opts
 
-    opts.url    = Util.template opts.url, @config, opts.replace
-    opts.method = "get"
-    opts.json   = true
-    opts.auth   =
+    opts.url     = Util.template opts.url, @config, opts.replace
+    opts.method ?= "get"
+    opts.json   ?= true
+    opts.auth   ?=
       username: @config.username
       password: @config.password
-    opts.headers =
+    opts.headers ?=
       "User-Agent": "Baseamp (https://github.com/kvz/baseamp)"
 
     if opts.url.substr(0, 7) == "file://"
@@ -87,6 +129,12 @@ class Api
       return cb null, data
 
     request[opts.method] opts, (err, req, data) =>
+      status = "#{req.statusCode}"
+      if !status.match /[23][0-9]{2}/
+        msg = "Status code #{status} during #{opts.method.toUpperCase()} '#{opts.url}'"
+        err = new Error msg
+        return cb err, data
+
       if @vcr == true && opts.url.substr(0, 7) != "file://"
         debug "VCR: Recording #{opts.url} to disk so we can watch later : )"
         fs.writeFileSync Util.template(@_toFixtureFile(opts.url), @config),
