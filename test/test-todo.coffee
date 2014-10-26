@@ -37,6 +37,19 @@ describe "todo", ->
       expect(handle).to.deep.equal "KMS"
       done()
 
+  describe "constructor", ->
+    it "should be able to parse a markdown todo, adding in a default positions", (done) ->
+      todo = new Todo "- [x] Upgrade stunnel and turn off SSLv3", position: 99
+
+      t = todo
+      expect(t.due).to.equal undefined
+      expect(t.assignee).to.equal undefined
+      expect(t.position).to.equal 99
+      expect(t.category).to.equal "completed"
+      expect(t.content).to.equal "Upgrade stunnel and turn off SSLv3"
+      expect(t.id).to.equal undefined
+      done()
+
   describe "fromMarkdown", ->
     it "should be able to parse a compact todo", (done) ->
       todo = new Todo

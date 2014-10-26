@@ -23,6 +23,7 @@ class Todo
     @id       = todo.id
     @content  = todo.content
     @category = todo.category
+    @position = todo.position
 
   fromApi: (input) ->
     category = "remaining"
