@@ -1,20 +1,20 @@
 should      = require("chai").should()
 Fakeserver  = require "./fakeserver"
-debug       = require("debug")("Baseamp:test-baseamp")
+debug       = require("debug")("Baseamp:test-api")
 util        = require "util"
 expect      = require("chai").expect
 fixture_dir = "#{__dirname}/fixtures"
 fakeserver  = new Fakeserver()
 port        = 7000
-Baseamp     = require "../src/Baseamp"
-baseamp     = new Baseamp
+Api         = require "../src/Api"
+api         = new Api
   username  : "test"
   password  : "test"
   account_id: "test"
   project_id: "test"
-baseamp.endpoints.todoLists = "file://{{{fixture_dir}}}/6904769.todolists.json"
+api.endpoints.todoLists = "file://{{{fixture_dir}}}/6904769.todolists.json"
 
-describe "baseamp", ->
+describe "api", ->
   @timeout 10000 # <-- This is the Mocha timeout, allowing tests to run longer
   describe "_toFixture", ->
     it "should anonymize dataset", (done) ->
@@ -27,7 +27,7 @@ describe "baseamp", ->
         url: "https://basecamp.com/999999999/api/v1/projects/605816632/todolists/968316918.json"
         app_url: "https://basecamp.com/999999999/projects/605816632/todolists/968316918"
 
-      anonymized = baseamp._toFixture input
+      anonymized = api._toFixture input
       # debug util.inspect anonymized
       expect(anonymized).to.deep.equal
         hey: 22
@@ -42,7 +42,7 @@ describe "baseamp", ->
 
   describe "getTodoLists", ->
     it "should retrieve todoLists", (done) ->
-      baseamp.getTodoLists (err, todoLists) ->
+      api.getTodoLists (err, todoLists) ->
 
         # debug util.inspect
         #   todoLists: todoLists[0]
