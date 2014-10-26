@@ -1,11 +1,9 @@
 should      = require("chai").should()
-Fakeserver  = require "./fakeserver"
 debug       = require("debug")("Baseamp:test-todo")
 util        = require "util"
 fs          = require "fs"
 expect      = require("chai").expect
 fixture_dir = "#{__dirname}/fixtures"
-fakeserver  = new Fakeserver()
 port        = 7000
 Todo        = require "../src/Todo"
 

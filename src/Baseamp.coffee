@@ -29,9 +29,9 @@ class Baseamp
     stderr += " Actions:\n"
     stderr += " \n"
     stderr += "   download [file]  Downloads latest todos from Basecamp, saved to file or STDOUT(-)\n"
-    stderr += "   upload [file]  Uploads latest todos to Basecamp, sourcing from file or STDIN(-)\n"
-    stderr += "  version         Reports version\n"
-    stderr += "     help         This page\n"
+    stderr += "     upload [file]  Uploads latest todos to Basecamp, sourcing from file or STDIN(-)\n"
+    stderr += "    version         Reports version\n"
+    stderr += "       help         This page\n"
 
     cb null, stdout, stderr
 

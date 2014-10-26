@@ -1,10 +1,8 @@
 should      = require("chai").should()
-Fakeserver  = require "./fakeserver"
 debug       = require("debug")("Baseamp:test-api")
 util        = require "util"
 expect      = require("chai").expect
 fixture_dir = "#{__dirname}/fixtures"
-fakeserver  = new Fakeserver()
 port        = 7000
 Api         = require "../src/Api"
 api         = new Api
