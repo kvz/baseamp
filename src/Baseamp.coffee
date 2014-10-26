@@ -28,14 +28,14 @@ class Baseamp
     stderr += " \n"
     stderr += " Actions:\n"
     stderr += " \n"
-    stderr += "   import [file]  Downloads latest todos from Basecamp, saved to file or STDOUT(-)\n"
-    stderr += "   export [file]  Uploads latest todos to Basecamp, sourcing from file or STDIN(-)\n"
+    stderr += "   download [file]  Downloads latest todos from Basecamp, saved to file or STDOUT(-)\n"
+    stderr += "   upload [file]  Uploads latest todos to Basecamp, sourcing from file or STDIN(-)\n"
     stderr += "  version         Reports version\n"
     stderr += "     help         This page\n"
 
     cb null, stdout, stderr
 
-  import: (file, cb) ->
+  download: (file, cb) ->
     @api.downloadTodoLists (err, todoLists) ->
       if err
         return cb err
@@ -53,7 +53,7 @@ class Baseamp
 
       cb null, stdout, stderr
 
-  export: (file, cb) ->
+  upload: (file, cb) ->
     stderr = "Reading todo from #{file}\n"
     stdout = ""
 

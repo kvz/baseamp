@@ -19,11 +19,11 @@ compile:
 	@echo "Compiling files"
 	time make build
 
-run-export:
-	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp export ./test/fixtures/test.md
+run-upload:
+	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp upload ./test/fixtures/test.md
 
-run-import:
-	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp import -
+run-download:
+	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp download -
 
 watch:
 	watch -n 2 make -s compile
@@ -47,8 +47,8 @@ release-patch: build test
 	test \
 	lint \
 	build \
-	run-import \
-	run-export \
+	run-download \
+	run-upload \
 	release-major \
 	release-minor \
 	release-patch \

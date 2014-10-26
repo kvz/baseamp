@@ -30,10 +30,10 @@ export BASECAMP_PROJECT_ID="<your private project id (2nd number in urls)>"
 
 **WARNING: Use a test Project first, Baseamp will overwrite todos in existing projects!**
 
-To import (from Basecamp API -> local markdown):
+To download (from Basecamp API -> local markdown):
 
 ```bash
-$ baseamp import -
+$ baseamp download -
 ## Bugs (this list should always be emptied first) (#21402412)
 
  - [ ] TIK Big file upload lists can exceed the assemblies.files database field length: http://support.transloadit.com/discussions/problems/13485-problem-with-assemblies-page-files-display (#133063190)
@@ -46,12 +46,12 @@ $ baseamp import -
 ...etc...
 ```
 
-To export (from local markdown -> Basecamp API):
+To upload (from local markdown -> Basecamp API):
 
-To import (from Basecamp API -> local markdown):
+To download (from Basecamp API -> local markdown):
 
 ```bash
-$ baseamp export ./Our-Todos.md
+$ baseamp upload ./Our-Todos.md
 ```
 
 ## Sync Behavior & Limitations
@@ -68,9 +68,9 @@ When downloading, Baseamp:
 
 ## Todo
 
- - [ ] Rename import to download, export to upload
- - [ ] Make export support STDIN
- - [x] Fix import bug duplicating todos over different lists
+ - [x] Rename download to download, upload to upload
+ - [ ] Make upload support STDIN
+ - [x] Fix download bug duplicating todos over different lists
 
 ## Contribute
 
@@ -90,14 +90,14 @@ To single out a test use `make test GREP=30x`
 
 ```bash
 source env.sh
-DEBUG=Baseamp:* ./bin/baseamp.js import
+DEBUG=Baseamp:* ./bin/baseamp.js download
 ```
 
 Or use Makefile shortcuts
 
 ```bash
-make run-import
-make run-export
+make run-download
+make run-upload
 ```
 
 ### Release
