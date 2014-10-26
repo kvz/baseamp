@@ -54,8 +54,22 @@ To import (from Basecamp API -> local markdown):
 $ baseamp export ./Our-Todos.md
 ```
 
+## Sync Behavior & Limitations
+
+When uploading, Baseamp:
+
+ - creates lists & todos that do not exists
+ - updates lists & todos that we already track the `(#id)` of in markdown text
+ - never deletes something that exist on Basecamp, but not in local markdown, as someone else may have added this item online.
+
+When downloading, Baseamp:
+
+ - Extracts full Todolists of a project, and saves them to a markdown file (or STDOUT), overwriting anything that was already there.
+
 ## Todo
 
+ - [ ] Rename import to download, export to upload
+ - [ ] Make export support STDIN
  - [x] Fix import bug duplicating todos over different lists
 
 ## Contribute
