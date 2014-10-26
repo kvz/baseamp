@@ -65,6 +65,9 @@ class Api
           payload.position = list.position
 
         @_request opts, list, (err, data) =>
+          if err
+            return cb err
+
           debug util.inspect
             opts      : opts
             payload   : payload
@@ -72,6 +75,7 @@ class Api
             err       : err
             data      : data
 
+          list.id = data.id
           process.exit 0
           for todo in list.todos
             debug util.inspect
@@ -108,12 +112,13 @@ class Api
       q.drain = ->
         cb null, lists
 
-  _request: (opts, data, cb) ->
+  _request: (opts, payload, cb) ->
     if _.isString(opts)
       opts =
         url: opts
 
     opts.url     = Util.template opts.url, @config, opts.replace
+    opts.body    = payload
     opts.method ?= "get"
     opts.json   ?= true
     opts.auth   ?=
