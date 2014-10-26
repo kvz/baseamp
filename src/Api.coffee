@@ -25,7 +25,13 @@ class Api
     if !@config.fixture_dir?
       @config.fixture_dir = "#{__dirname}/../test/fixtures"
 
-  getTodoLists: (cb) ->
+  uploadTodoLists: (todoLists, cb) ->
+    debug util.inspect
+      todoLists: todoLists
+    cb null
+
+
+  downloadTodoLists: (cb) ->
     @_request @endpoints["todoLists"], null, (err, index) =>
       if err
         return cb err

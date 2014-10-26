@@ -1,4 +1,5 @@
 util        = require "util"
+fs          = require "fs"
 _           = require "underscore"
 debug       = require("debug")("Baseamp:Baseamp")
 TodoLists   = require "./TodoLists"
@@ -35,7 +36,7 @@ class Baseamp
     cb null, stdout, stderr
 
   import: (file, cb) ->
-    @api.getTodoLists (err, todoLists) ->
+    @api.downloadTodoLists (err, todoLists) ->
       if err
         return cb err
 
@@ -53,21 +54,17 @@ class Baseamp
       cb null, stdout, stderr
 
   export: (file, cb) ->
+    stderr = "Reading todo from #{file}\n"
+    stdout = ""
+
     # @todo add support for STDIN here via file == '-'
     buf       = fs.readFileSync file, "utf-8"
     todoLists = new TodoLists buf
 
-    # @todo update todos whos ID is known.
-    # create others
-    # * what about delete? <-- we cannot do delete as we cannot know
-    # if someone else added an item to Basecamp. Let's just only check
-    # items off. (I think Basecamp also doesn't let you easily delete items)
+    @api.uploadTodoLists todoLists, (err) ->
+      if err
+        return cb err
 
-    debug util.inspect
-      todoLists: todoLists
-      todoList : todoLists.lists[0]
-
-    cb null, "winning"
-
+      cb null, stdout, stderr
 
 module.exports = Baseamp

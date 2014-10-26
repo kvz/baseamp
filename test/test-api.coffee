@@ -40,9 +40,9 @@ describe "api", ->
 
       done()
 
-  describe "getTodoLists", ->
+  describe "downloadTodoLists", ->
     it "should retrieve todoLists", (done) ->
-      api.getTodoLists (err, todoLists) ->
+      api.downloadTodoLists (err, todoLists) ->
 
         # debug util.inspect
         #   todoLists: todoLists[0]
