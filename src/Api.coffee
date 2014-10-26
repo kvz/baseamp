@@ -67,14 +67,14 @@ class Api
 
     if opts.url.substr(0, 7) == "file://"
       filename = opts.url.replace /^file\:\/\//, ""
-      json     = fs.readFileSync Util.template(filename)
+      json     = fs.readFileSync Util.template(filename, @config)
       data     = JSON.parse json
       return cb null, data
 
     request.get opts, (err, req, data) =>
       if @vcr == true && opts.url.substr(0, 7) != "file://"
         debug "VCR: Recording #{opts.url} to disk so we can watch later : )"
-        fs.writeFileSync Util.template(@_toFixtureFile(opts.url)),
+        fs.writeFileSync Util.template(@_toFixtureFile(opts.url), @config),
           JSON.stringify(@_toFixture(data), null, 2)
       cb err, data
 
