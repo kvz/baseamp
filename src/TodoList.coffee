@@ -6,13 +6,15 @@ Todo   = require "./Todo"
 Util   = require "./Util"
 
 class TodoList
-  constructor: (input) ->
+  constructor: (input, defaults) ->
     if !input?
       todoList = {}
     else if _.isString(input)
       todoList = @fromMarkdown(input)
     else
       todoList = @fromApi(input)
+
+    _.defaults todoList, defaults
 
     @id    = todoList.id
     @name  = todoList.name
@@ -36,8 +38,9 @@ class TodoList
     todoList =
       todos: []
 
-    str   = "#{str}".replace "\r", ""
-    lines = str.split "\n"
+    str         = "#{str}".replace "\r", ""
+    lines       = str.split "\n"
+    cntPosition = 0
     for line in lines
       # Extract Header
       m = line.match /^##\s+(.+)$/
@@ -52,7 +55,9 @@ class TodoList
         continue
 
       # Add todo
-      todo = new Todo line
+      cntPosition++
+      todo = new Todo line,
+        position: cntPosition
       if todo?
         todoList.todos.push todo
 

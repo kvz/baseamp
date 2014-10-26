@@ -5,13 +5,15 @@ debug  = require("debug")("Baseamp:Todo")
 Util   = require "./Util"
 
 class Todo
-  constructor: (input) ->
+  constructor: (input, defaults) ->
     if !input?
       todo = {}
     else if _.isString(input)
       todo = @fromMarkdown(input)
     else
       todo = @fromApi(input)
+
+    _.defaults todo, defaults
 
     if !todo?
       return

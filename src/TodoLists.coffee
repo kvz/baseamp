@@ -6,13 +6,15 @@ TodoList = require "./TodoList"
 Util     = require "./Util"
 
 class TodoLists
-  constructor: (input) ->
+  constructor: (input, defaults) ->
     if !input?
       todoLists = {}
     else if _.isString input
       todoLists = @fromMarkdown input
     else
       todoLists = @fromApi input
+
+    _.defaults todoLists, defaults
 
     # @id    = todoList.id
     # @name  = todoList.name
