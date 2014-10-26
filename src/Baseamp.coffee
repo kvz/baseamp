@@ -4,9 +4,9 @@ _         = require "underscore"
 fs        = require "fs"
 async     = require "async"
 debug     = require("debug")("Baseamp:Baseamp")
-Mustache  = require "mustache"
-TodoList  = require "./TodoList"
 TodoLists = require "./TodoLists"
+Util      = require "./Util"
+Api       = require "./Api"
 
 class Baseamp
   vcr: false
@@ -26,20 +26,12 @@ class Baseamp
     if !@config.fixture_dir?
       @config.fixture_dir = "#{__dirname}/../test/fixtures"
 
-  _tmpltr: (url, params) ->
-    replace = @config
-    if params?
-      for key, val of params
-        replace[key] = val
-
-    return Mustache.render url, replace
-
   _request: (opts, data, cb) ->
     if _.isString(opts)
       opts =
         url: opts
 
-    opts.url  = @_tmpltr opts.url, opts.replace
+    opts.url  = Util.template opts.url, @config, opts.replace
     opts.json = true
     opts.auth =
       username: @config.username
@@ -49,14 +41,14 @@ class Baseamp
 
     if opts.url.substr(0, 7) == "file://"
       filename = opts.url.replace /^file\:\/\//, ""
-      json     = fs.readFileSync @_tmpltr(filename)
+      json     = fs.readFileSync Util.template(filename)
       data     = JSON.parse json
       return cb null, data
 
     request.get opts, (err, req, data) =>
       if @vcr == true && opts.url.substr(0, 7) != "file://"
         debug "VCR: Recording #{opts.url} to disk so we can watch later : )"
-        fs.writeFileSync @_tmpltr(@_toFixtureFile(opts.url)),
+        fs.writeFileSync Util.template(@_toFixtureFile(opts.url)),
           JSON.stringify(@_toFixture(data), null, 2)
       cb err, data
 
@@ -99,32 +91,6 @@ class Baseamp
     filename += url.replace /[^a-z0-9]/g, "."
     return filename
 
-  getTodoLists: (cb) ->
-    @_request @endpoints["todoLists"], null, (err, index) =>
-      if err
-        return cb err
-
-      # Determine lists to retrieve
-      retrieveUrls = (item.url for item in index when item.url?)
-      if !retrieveUrls.length
-        return cb new Error "Found no urls in index"
-
-      # The queue worker to retrieve the lists
-      lists = []
-      q = async.queue (url, callback) =>
-        @_request url, null, (err, todoList) ->
-          if err
-            debug "Error retrieving #{url}. #{err}"
-
-          lists.push todoList
-          callback()
-      , 4
-
-      q.push retrieveUrls
-
-      # Return
-      q.drain = ->
-        cb null, lists
 
   version: (file, cb) ->
     pjson = require "../package.json"
@@ -152,6 +118,33 @@ class Baseamp
     stderr += "     help         This page\n"
 
     cb null, stdout, stderr
+
+  getTodoLists: (cb) ->
+    @_request @endpoints["todoLists"], null, (err, index) =>
+      if err
+        return cb err
+
+      # Determine lists to retrieve
+      retrieveUrls = (item.url for item in index when item.url?)
+      if !retrieveUrls.length
+        return cb new Error "Found no urls in index"
+
+      # The queue worker to retrieve the lists
+      lists = []
+      q = async.queue (url, callback) =>
+        @_request url, null, (err, todoList) ->
+          if err
+            debug "Error retrieving #{url}. #{err}"
+
+          lists.push todoList
+          callback()
+      , 4
+
+      q.push retrieveUrls
+
+      # Return
+      q.drain = ->
+        cb null, lists
 
   import: (file, cb) ->
     @getTodoLists (err, todoLists) ->
