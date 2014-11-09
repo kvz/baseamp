@@ -51,7 +51,7 @@ To upload (from local markdown -> Basecamp API):
 To download (from Basecamp API -> local markdown):
 
 ```bash
-$ baseamp upload ./Our-Todos.md
+$ baseamp sync ./Our-Todos.md
 ```
 
 ## Sync Behavior & Limitations
@@ -107,6 +107,8 @@ To single out a test use `make test GREP=30x`
 ```bash
 source env.sh
 DEBUG=Baseamp:* ./bin/baseamp.js download -
+
+source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp.js sync /tmp/full.md
 ```
 
 Or use Makefile shortcuts
