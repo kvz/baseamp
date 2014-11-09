@@ -56,6 +56,7 @@ class Api
       remoteItem        = remoteIds[type][item.id]
       isUpdate          = remoteItem?
       { opts, payload } = item.apiPayload isUpdate, @endpoints
+      payload           = @_itemIdMatch type, displayField, payload, remoteIds
 
       # debug util.inspect
       #   payload   : payload
