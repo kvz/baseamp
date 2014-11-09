@@ -74,16 +74,12 @@ You should do a *download* after every *upload*, in order to save the IDs locall
 
 Keep in mind that if you remove 1 item from a list, it can result in `position` updates for siblings in that list.
 
-Note that if you update 1 item's positioning, Basecamp reorders & updates the position of all siblings. To avoid an endless chain of positioning conflicts, Baseamp is currently limited to update 1 position per run, per list.
-
-To compensate, you can run `sync` multiple times.
-
 ## Todo
 
  - [ ] User mapping
  - [ ] Support for rate limiter (500 req/10 minutes)
  - [ ] Tests for upload
- - [ ] Automatically run sync multiple times as long as there are SKIPOSes
+ - [x] Fix SKIPOSes
  - [x] Figure out how to deal with positioning. One update triggers many remotely.
  - [x] Sync (combining upload, download)
  - [x] Skip uploads if payload is equal

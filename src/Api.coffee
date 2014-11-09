@@ -80,18 +80,6 @@ class Api
           # No changes
           debug "SKIP #{@_human type, payload, displayField}"
           return qCb()
-        else if "position" in delta
-          # Only allow one position change per run per list to avoid
-          # a chain effect
-          positionChangesSaved++
-          if positionChangesSaved > 1
-            others = (field for field in delta when field != "position")
-            if others.length == 0
-              debug "SKIPOS #{@_human type, payload, displayField}"
-              return qCb()
-            else
-              # Allow the remainder of the diff to pass through
-              delete payload.position
 
       debug "PUSH #{@_human type, payload, displayField}"
       opts =
