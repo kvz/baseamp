@@ -49,7 +49,10 @@ class Todo
         todolist_id: @todolist_id
 
     payload =
-      content: @content
+      content    : @content
+      position   : @position
+      todolist_id: @todolist_id
+      completed  : @completed
 
     # Update
     if update
@@ -57,10 +60,6 @@ class Todo
       opts.url     = endpoints["todo"]
       opts.replace =
         todo_id: @id
-
-      payload.position    = @position
-      payload.todolist_id = @todolist_id
-      payload.completed   = @completed
 
     ret =
       opts   :opts

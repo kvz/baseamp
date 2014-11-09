@@ -48,6 +48,7 @@ class TodoList
 
     payload =
       name: @name
+      payload: @position
 
     # Update
     if update
@@ -55,8 +56,6 @@ class TodoList
       opts.url     = endpoints["todoList"]
       opts.replace =
         todolist_id: @id
-
-      payload.position = @position
 
     ret =
       opts   :opts
