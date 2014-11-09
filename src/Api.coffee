@@ -48,9 +48,9 @@ class Api
     errors = []
 
     q = async.queue (item, qCb) =>
-      item            = @_itemIdMatch type, displayField, item, remoteIds
-      isUpdate        = remoteIds[type][item.id]?
-      {opts, payload} = item.apiPayload isUpdate, @endpoints
+      item              = @_itemIdMatch type, displayField, item, remoteIds
+      isUpdate          = remoteIds[type][item.id]?
+      { opts, payload } = item.apiPayload isUpdate, @endpoints
 
       # debug util.inspect
       #   remoteIds:remoteIds[type]
