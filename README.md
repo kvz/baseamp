@@ -72,12 +72,14 @@ There is no concept of sub-todos.
 
 You should do a *download* after every *upload*, in order to save the IDs locally of newly created todos.
 
+Keep in mind that if you remove 1 item from a list, it can result in `position` updates for siblings in that list.
+
 ## Todo
 
  - [ ] User mapping
- - [ ] Sync (combining upload, download)
  - [ ] Support for rate limiter (500 req/10 minutes)
  - [ ] Tests for upload
+ - [ ] Sync (combining upload, download)
  - [x] Skip uploads if payload is equal
  - [-] ~~Make upload support STDIN~~
  - [x] Upload

@@ -76,8 +76,8 @@ class Api
       # debug util.inspect
       #   payload   : payload
       #   remoteItem: remoteItem
-      if method == "put" && !@_itemDiffs remoteItem, displayField, payload
-        debug "SKIP #{@_human payload, displayField}"
+      if method == "put" && !@_itemDiffs type, remoteItem, displayField, payload
+        debug "SKIP #{@_human type, payload, displayField}"
         return qCb()
 
       # debug util.inspect
@@ -104,13 +104,13 @@ class Api
 
     q.push items
 
-  _human: (item, displayField) ->
-    return item[displayField].substr(0, 20)
+  _human: (type, item, displayField) ->
+    return "#{type} " + item[displayField].substr(0, 20)
 
-  _itemDiffs: (remoteItem, displayField, payload) ->
+  _itemDiffs: (type, remoteItem, displayField, payload) ->
     for key, val of payload
       if payload[key] != remoteItem[key]
-        debug "CHANGE '#{@_human payload, displayField}'. Payload's key '#{key}' is '#{val}' while remoteItem's is '#{remoteItem[key]}'"
+        debug "CHANGE '#{@_human type, payload, displayField}'. Payload's key '#{key}' is '#{val}' while remoteItem's is '#{remoteItem[key]}'"
         return true
 
     return false
