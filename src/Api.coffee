@@ -18,6 +18,11 @@ class Api
     post_todos: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{item_id}}}/todos.json"
     put_todos : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todos/{{{item_id}}}.json"
 
+  # I'm suspecting that we need to maintain order when
+  # updating position on (automatically) many todos in a list
+  uploadConcurrency: 1
+  downloadConcurrency: 32
+
   constructor: (config) ->
     @config = config || {}
 
@@ -94,7 +99,7 @@ class Api
         item.id = data.id
 
         qCb()
-    , 4
+    , @uploadConcurrency
 
     q.drain = () =>
       if errors.length
@@ -102,7 +107,7 @@ class Api
 
       cb null
 
-    q.push items
+    q.push items.reverse()
 
   _human: (type, item, displayField) ->
     return "#{type} " + item[displayField].substr(0, 20)
@@ -171,6 +176,7 @@ class Api
 
 
   downloadTodoLists: (cb) ->
+    debug "Downloading..."
     @_request @endpoints["get_lists"], null, (err, lists) =>
       if err
         return cb err
@@ -192,7 +198,7 @@ class Api
 
           lists.push todoList
           callback()
-      , 4
+      , @downloadConcurrency
 
       q.push retrieveUrls
 
@@ -224,7 +230,7 @@ class Api
       data     = JSON.parse json
       return cb null, data
 
-    debug "#{opts.method.toUpperCase()} #{opts.url}"
+    # debug "#{opts.method.toUpperCase()} #{opts.url}"
     request[opts.method] opts, (err, req, data) =>
       status = "#{req.statusCode}"
       # debug util.inspect

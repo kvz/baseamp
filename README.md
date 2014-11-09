@@ -79,7 +79,8 @@ Keep in mind that if you remove 1 item from a list, it can result in `position` 
  - [ ] User mapping
  - [ ] Support for rate limiter (500 req/10 minutes)
  - [ ] Tests for upload
- - [ ] Sync (combining upload, download)
+ - [ ] Figure out how to deal with positioning. One update triggers many remotely.
+ - [x] Sync (combining upload, download)
  - [x] Skip uploads if payload is equal
  - [-] ~~Make upload support STDIN~~
  - [x] Upload
