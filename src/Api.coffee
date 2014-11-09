@@ -38,8 +38,9 @@ class Api
       # this ID might be improved
       remoteItemsWithSameName = (remoteItem for remoteId, remoteItem of remoteIds[type] when remoteItem[displayField] == item[displayField])
 
-      if remoteItemsWithSameName.length == 1
-        item.id = remoteItemsWithSameName[0].id
+      # update last item with identical name/content
+      if remoteItemsWithSameName.length
+        item.id = remoteItemsWithSameName[remoteItemsWithSameName.length - 1].id
 
     return item
 
@@ -65,7 +66,7 @@ class Api
         item.id = data.id
 
         qCb()
-    , 1
+    , 4
 
     q.drain = () =>
       if errors.length
@@ -95,13 +96,11 @@ class Api
             todos: {}
 
           # Save flat remote items
-          for remoteList in remoteLists
-            remoteIds["lists"][remoteList.id] = remoteList
-            for todo in remoteList.todos
+          remoteTodoLists = new TodoLists remoteLists
+          for list in remoteTodoLists.lists
+            remoteIds["lists"][list.id] = list
+            for todo in list.todos
               remoteIds["todos"][todo.id] = todo
-
-          debug util.inspect
-            beginRem: remoteIds
 
           callback null, remoteIds
 

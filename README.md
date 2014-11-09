@@ -74,10 +74,10 @@ You should do a *download* after every *upload*, in order to save the IDs locall
 
 ## Todo
 
- - [ ] Implement upload
  - [ ] Implement user mapping
- - [ ] Make upload support STDIN
  - [ ] Implement sync (combining upload, download)
+ - [-] ~~Make upload support STDIN~~
+ - [x] Implement upload
  - [x] Rename download to download, upload to upload
  - [x] Fix download bug duplicating todos over different lists
 
