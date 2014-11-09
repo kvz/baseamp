@@ -40,14 +40,19 @@ class TodoLists
     todoLists =
       lists: []
 
-    parts       = str.split /^##\s+/m
+    parts = str.split /^##\s+/m
     for part in parts
       if !part.trim()
         continue
 
-      part = "## #{part}"
-      todoLists.lists.push new TodoList part,
+      line = "## #{part}"
+
+      # Add list
+      list = new TodoList line,
         position: todoLists.lists.length + 1
+
+      if list?
+        todoLists.lists.push list
 
     return todoLists
 

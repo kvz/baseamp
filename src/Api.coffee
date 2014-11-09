@@ -62,12 +62,38 @@ class Api
   _uploadItems: (type, displayField, items, remoteIds, cb) ->
     errors = []
 
+    positionChangesSaved = 0
+
     q = async.queue (item, qCb) =>
       item       = @_itemIdMatch type, displayField, item, remoteIds
       remoteItem = remoteIds[type][item.id]
       method     = if remoteItem? then "put" else "post"
       payload    = item.apiPayload()
 
+      # debug util.inspect
+      #   payload   : payload
+      #   remoteItem: remoteItem
+      if method == "put"
+        delta = @_itemDiffs type, remoteItem, displayField, payload
+
+        if delta.length == 0
+          # No changes
+          debug "SKIP #{@_human type, payload, displayField}"
+          return qCb()
+        else if "position" in delta
+          # Only allow one position change per run per list to avoid
+          # a chain effect
+          positionChangesSaved++
+          if positionChangesSaved > 1
+            others = (field for field in delta when field != "position")
+            if others.length == 0
+              debug "SKIPOS #{@_human type, payload, displayField}"
+              return qCb()
+            else
+              # Allow the remainder of the diff to pass through
+              delete payload.position
+
+      debug "PUSH #{@_human type, payload, displayField}"
       opts =
         method : method
         url    : @endpoints["#{method}_#{type}"]
@@ -77,19 +103,6 @@ class Api
       if method == "post" && type = "todos"
         opts.replace =
           item_id: item.todolist_id
-
-      # debug util.inspect
-      #   payload   : payload
-      #   remoteItem: remoteItem
-      if method == "put" && !@_itemDiffs type, remoteItem, displayField, payload
-        debug "SKIP #{@_human type, payload, displayField}"
-        return qCb()
-
-      # debug util.inspect
-      #   remoteIds:remoteIds[type]
-      #   method   : method
-      #   item     :item
-      #   opts     :opts
 
       @_request opts, payload, (err, data) =>
         if err
@@ -107,18 +120,19 @@ class Api
 
       cb null
 
-    q.push items.reverse()
+    q.push items
 
   _human: (type, item, displayField) ->
     return "#{type} " + item[displayField].substr(0, 20)
 
   _itemDiffs: (type, remoteItem, displayField, payload) ->
+    diff = []
     for key, val of payload
       if payload[key] != remoteItem[key]
         debug "CHANGE '#{@_human type, payload, displayField}'. Payload's key '#{key}' is '#{val}' while remoteItem's is '#{remoteItem[key]}'"
-        return true
+        diff.push key
 
-    return false
+    return diff
 
   uploadTodoLists: (localLists, cb) ->
     # Steps:

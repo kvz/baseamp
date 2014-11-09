@@ -73,6 +73,7 @@ class TodoList
       todo = new Todo line,
         position   : todoList.todos.length + 1
         todolist_id: todoList.id
+
       if todo?
         todoList.todos.push todo
 
