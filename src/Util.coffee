@@ -1,3 +1,4 @@
+require("source-map-support").install()
 Mustache = require "mustache"
 
 class Util

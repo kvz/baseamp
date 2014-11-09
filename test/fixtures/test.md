@@ -2,7 +2,7 @@
 
 - [x] CRM's System libxml is linked dynamically into PHP. Issue is closed to cleanup for Fahad, but still needs looking into: https://github.com/transloadit/transloadit-CRM/issues/3
 - [x] KVZ Add support for 3 more parameters to html/convert bot: http://support.transloadit.com/discussions/questions/91523-alpha-masking
-- [ ] 2014-10-26 KVZ Upgrade stunnel and turn off SSLv3 (again) https://assets.digitalocean.com/email/POODLE_email.html (#133039174)
+- [ ] 2014-10-26 KVZ Upgrade stunnel and turn off SSLv3 (again) https://assets.digitalocean.com/email/POODLE_email.html
 - [ ] Logrotate on CRM boxes for `/srv/transloadit-crm/shared/log` (3.6G nginx.access.log, 1.9G crm-cron-cake-calc_revenue.log)
 - [ ] Use Airbud in InstanceFetcher
 - [ ] CRM: Add Oracle & rapgenius logo. Cambridge logo and the one next to it have a white bg.

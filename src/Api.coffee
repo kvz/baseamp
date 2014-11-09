@@ -1,3 +1,4 @@
+require("source-map-support").install()
 util      = require "util"
 request   = require "request"
 moment    = require "moment"
@@ -7,6 +8,7 @@ Util      = require "./Util"
 fs        = require "fs"
 async     = require "async"
 TodoLists = require "./TodoLists"
+TodoList  = require "./TodoList"
 
 class Api
   vcr      : false
@@ -27,8 +29,54 @@ class Api
       throw new Error "Need a project_id"
     if !@config.fixture_dir?
       @config.fixture_dir = "#{__dirname}/../test/fixtures"
+    @remoteIds =
+      list: {}
+      todo: {}
 
-  uploadTodoLists: (localLists, cb) =>
+  _itemIdMatch: (type, item) ->
+    # Save remote list IDs to local missing/broken ones
+    # Match by unique name
+    if !item.id || !@remoteIds[type][item.id]?
+      # this ID might be improved
+      remoteItemsWithSameName = (remoteItem for remoteId, remoteItem of @remoteIds[type] when remoteItem.name == item.name)
+      if remoteItemsWithSameName.length == 1
+        item.id = remoteItemsWithSameName[0].id
+
+    return item
+
+  _uploadItems: (type, items, cb) ->
+    # Go over lists
+    mainErr = null
+    q = async.queue (item, qCb) =>
+      itemWithId = @_itemIdMatch type, item
+      isUpdate   = @remoteIds[type][itemWithId.id]?
+
+      {opts, payload} = itemWithId.apiPayload isUpdate, @endpoints
+      @_request opts, payload, (err, data) =>
+        if err
+          mainErr = null
+          return qCb mainErr
+
+        debug util.inspect
+          method: opts.method
+          url   : opts.url
+          err   : err
+          data  : data
+
+        if type == "list"
+          # Cascade new todolist_id onto Todos
+          newList = new TodoList itemWithId
+          @_uploadItems "todo", newList.todos, cb
+    , 1
+
+    q.drain = () =>
+      if mainErr
+        return cb mainErr
+      cb items
+
+    q.push items
+
+  uploadTodoLists: (localLists, cb) ->
     # Steps:
     #  - Download lists
     #  - Match unique names and save ids in local version if those ids
@@ -38,115 +86,21 @@ class Api
     # Offer a 'sync' step, that first does upload, then download, saving newly created IDs in local file
 
     @downloadTodoLists (err, remoteLists) =>
-      remoteLists = new TodoLists remoteLists
       if err
         return cb err
 
-      # Build flat remotes
-      allRemoteLists = {}
-      allRemoteTodos = {}
-      for remoteList in remoteLists.lists
-        allRemoteLists[remoteList.id] = remoteList
+      # Save flat remote items
+      for remoteList in remoteLists
+        @remoteIds["list"][remoteList.id] = remoteList
         for todo in remoteList.todos
-          allRemoteTodos[todo.id] = todo
+          @remoteIds["todo"][todo.id] = todo
 
-      # Upload Lists
-      for localList in localLists.lists
-        # Save remote list IDs to local missing/broken ones
-        # Match by unique name
-        if !localList.id || !allRemoteLists[localList.id]?
-          # this ID might be improved
-          remoteListsWithSameName = (remoteList for remoteId, remoteList of allRemoteLists when remoteList.name == localList.name)
-          if remoteListsWithSameName.length == 1
-            localList.id = remoteListsWithSameName[0].id
-
-          # Create
-          opts =
-            method: "post"
-            url   : @endpoints["todoLists"]
-
-          payload =
-            name: localList.name
-
-          # Update
-          if allRemoteLists[localList.id]?
-            opts.method  = "put"
-            opts.url     = @endpoints["todoList"]
-            opts.replace =
-              todolist_id: localList.id
-
-            payload.position = localList.position
-
-          # Execute on List
-          @_request opts, payload, (err, data) =>
-            if err
-              return cb err
-
-            debug util.inspect
-              opts      : opts
-              payload   : payload
-              err       : err
-              data      : data
-
-            localList.id = data.id
-
-            for localTodo in localList.todos
-              # Save remote todo IDs to local missing/broken ones
-              # Match by unique name
-              if !localTodo.id || !allRemoteTodos[localTodo.id]?
-                # this ID might be improved
-                remoteTodosWithSameName = (remoteTodo for remoteId, remoteTodo of allRemoteTodos when remoteTodo.name == localTodo.name)
-                if remoteTodosWithSameName.length == 1
-                  localTodo.id = remoteTodosWithSameName[0].id
-
-                # Create
-                opts =
-                  method : "post"
-                  url    : @endpoints["todoList"]
-                  replace:
-                    todolist_id: localTodo.id
-
-                payload =
-                  content: localTodo.content
-
-                # Update
-                if allRemoteLists[localList.id]?
-                  opts.method  = "put"
-                  opts.url     = @endpoints["todo"]
-                  opts.replace =
-                    todo_id: localTodo.id
-
-                  payload.position    = localTodo.position
-                  payload.todolist_id = localTodo.todolist_id
-                  payload.completed   = if localTodo.category == "completed" then true else false
-
-                # Execute
-                @_request opts, payload, (err, data) =>
-                  if err
-                    return cb err
-
-                  debug util.inspect
-                    opts      : opts
-                    payload   : payload
-                    err       : err
-                    data      : data
-
-                  localTodo.id = data.id
-
-            debug util.inspect
-              wId                    : localLists.lists
-              remoteTodosWithSameName: remoteTodosWithSameName
-
-            # return cb null
+      @_uploadItems "list", localLists.lists, cb
 
   downloadTodoLists: (cb) ->
     @_request @endpoints["todoLists"], null, (err, lists) =>
       if err
         return cb err
-
-      # debug util.inspect
-      #   err  : err
-      #   lists: lists
 
       # Determine lists to retrieve
       retrieveUrls = (list.url for list in lists when list.url?)
@@ -191,12 +145,19 @@ class Api
       data     = JSON.parse json
       return cb null, data
 
+    debug "#{opts.method.toUpperCase()} #{opts.url}"
     request[opts.method] opts, (err, req, data) =>
       status = "#{req.statusCode}"
       if !status.match /[23][0-9]{2}/
         msg = "Status code #{status} during #{opts.method.toUpperCase()} '#{opts.url}'"
         err = new Error msg
         return cb err, data
+
+      debug util.inspect
+        method: opts.method.toUpperCase()
+        url   : opts.url
+        err   : err
+        data  : data
 
       if @vcr == true && opts.url.substr(0, 7) != "file://"
         debug "VCR: Recording #{opts.url} to disk so we can watch later : )"

@@ -10,7 +10,7 @@ lint:
 
 build:
 	make lint || true
-	$(COFFEE) $(CSOPTS) -c -o lib src
+	$(COFFEE) $(CSOPTS) --map --compile --output lib src
 
 test: build
 	DEBUG=Baseamp:* $(MOCHA) --reporter $(REPORTER) test/ --grep "$(GREP)"
@@ -20,10 +20,10 @@ compile:
 	time make build
 
 run-upload:
-	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp upload ./test/fixtures/test.md
+	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp.js upload ./test/fixtures/test.md
 
 run-download:
-	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp download -
+	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp.js download -
 
 watch:
 	watch -n 2 make -s compile

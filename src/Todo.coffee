@@ -1,3 +1,4 @@
+require("source-map-support").install()
 util   = require "util"
 moment = require "moment"
 _      = require "underscore"
@@ -35,13 +36,43 @@ class Todo
       category = "trashed"
 
     todo =
-      due_at  : input.due_at
-      assignee: input.assignee?.name || input.assignee
-      id      : input.id
-      content : input.content
-      category: category
+      due_at   : input.due_at
+      assignee : input.assignee?.name || input.assignee
+      id       : input.id
+      content  : input.content
+      category : category
+      completed: if category == "completed" then true else false
 
     return todo
+
+  apiPayload: (update, endpoints) ->
+    # Create
+    opts =
+      method : "post"
+      url    : endpoints["todoList"]
+      replace:
+        todolist_id: @todolist_id
+
+    payload =
+      content: @content
+
+    # Update
+    if update
+      opts.method  = "put"
+      opts.url     = endpoints["todo"]
+      opts.replace =
+        todo_id: @id
+
+      payload.position    = @position
+      payload.todolist_id = @todolist_id
+      payload.completed   = @completed
+
+    ret =
+      opts   :opts
+      payload:payload
+
+    return ret
+
 
   fromMarkdown: (line) ->
     # Trim dashes and whitespace

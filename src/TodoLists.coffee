@@ -1,3 +1,4 @@
+require("source-map-support").install()
 util     = require "util"
 moment   = require "moment"
 _        = require "underscore"

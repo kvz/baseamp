@@ -75,6 +75,7 @@ You should do a *download* after every *upload*, in order to save the IDs locall
 ## Todo
 
  - [ ] Implement upload
+ - [ ] Implement user mapping
  - [ ] Make upload support STDIN
  - [ ] Implement sync (combining upload, download)
  - [x] Rename download to download, upload to upload
@@ -98,7 +99,7 @@ To single out a test use `make test GREP=30x`
 
 ```bash
 source env.sh
-DEBUG=Baseamp:* ./bin/baseamp.js download
+DEBUG=Baseamp:* ./bin/baseamp.js download -
 ```
 
 Or use Makefile shortcuts
@@ -110,7 +111,7 @@ make run-upload
 
 ### Release
 
-Releasing a new version to npmjs.org can be done via `make release-major` (or minor / patch, depending on the [semantic versioning](http://semver.org/) impact of your changes). This:
+Releasing a new version to npmjs.org can be done via `make release-patch` (or minor / major, depending on the [semantic versioning](http://semver.org/) impact of your changes). This:
 
  - updates the `package.json`
  - saves a release commit with the updated version in Git

@@ -1,3 +1,4 @@
+require("source-map-support").install()
 util   = require "util"
 moment = require "moment"
 _      = require "underscore"
@@ -29,11 +30,37 @@ class TodoList
 
     for category, apiTodos of input.todos
       for apiTodo in apiTodos
-        todo = new Todo apiTodo
+        todo = new Todo apiTodo,
+          todolist_id: todoList.id
+
         if todo?
           todoList.todos.push todo
 
     return todoList
+
+  apiPayload: (update, endpoints) ->
+    # Create
+    opts =
+      method: "post"
+      url   : endpoints["todoLists"]
+
+    payload =
+      name: @name
+
+    # Update
+    if update
+      opts.method  = "put"
+      opts.url     = endpoints["todoList"]
+      opts.replace =
+        todolist_id: @id
+
+      payload.position = @position
+
+    ret =
+      opts   :opts
+      payload:payload
+
+    return ret
 
   fromMarkdown: (str) ->
     todoList =
@@ -58,7 +85,8 @@ class TodoList
       # Add todo
       cntPosition++
       todo = new Todo line,
-        position: cntPosition
+        position   : cntPosition
+        todolist_id: todoList.id
       if todo?
         todoList.todos.push todo
 
