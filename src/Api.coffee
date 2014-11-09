@@ -1,4 +1,3 @@
-require("source-map-support").install()
 util      = require "util"
 request   = require "request"
 moment    = require "moment"
@@ -15,10 +14,12 @@ class Api
   endpoints:
     todoLists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
     todoList : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{todolist_id}}}.json"
+    todos    : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{todolist_id}}}/todos.json"
     todo     : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todos/{{{todo_id}}}.json"
 
   constructor: (config) ->
     @config = config || {}
+
     if !@config.username?
       throw new Error "Need a username"
     if !@config.password?
@@ -29,50 +30,48 @@ class Api
       throw new Error "Need a project_id"
     if !@config.fixture_dir?
       @config.fixture_dir = "#{__dirname}/../test/fixtures"
-    @remoteIds =
-      list: {}
-      todo: {}
 
-  _itemIdMatch: (type, item) ->
+  _itemIdMatch: (type, displayField, item, remoteIds) ->
     # Save remote list IDs to local missing/broken ones
     # Match by unique name
-    if !item.id || !@remoteIds[type][item.id]?
+    if !item.id || !remoteIds[type][item.id]?
       # this ID might be improved
-      remoteItemsWithSameName = (remoteItem for remoteId, remoteItem of @remoteIds[type] when remoteItem.name == item.name)
+      remoteItemsWithSameName = (remoteItem for remoteId, remoteItem of remoteIds[type] when remoteItem[displayField] == item[displayField])
+
       if remoteItemsWithSameName.length == 1
         item.id = remoteItemsWithSameName[0].id
 
     return item
 
-  _uploadItems: (type, items, cb) ->
-    # Go over lists
-    mainErr = null
-    q = async.queue (item, qCb) =>
-      itemWithId = @_itemIdMatch type, item
-      isUpdate   = @remoteIds[type][itemWithId.id]?
+  _uploadItems: (type, displayField, items, remoteIds, cb) ->
+    errors = []
 
-      {opts, payload} = itemWithId.apiPayload isUpdate, @endpoints
+    q = async.queue (item, qCb) =>
+      item            = @_itemIdMatch type, displayField, item, remoteIds
+      isUpdate        = remoteIds[type][item.id]?
+      {opts, payload} = item.apiPayload isUpdate, @endpoints
+
+      # debug util.inspect
+      #   remoteIds:remoteIds[type]
+      #   isUpdate :isUpdate
+      #   item     :item
+      #   opts     :opts
+
       @_request opts, payload, (err, data) =>
         if err
-          mainErr = null
-          return qCb mainErr
+          errors.push "Errors while #{opts.method} #{opts.url}. #{err}"
+          return qCb()
 
-        debug util.inspect
-          method: opts.method
-          url   : opts.url
-          err   : err
-          data  : data
+        item.id = data.id
 
-        if type == "list"
-          # Cascade new todolist_id onto Todos
-          newList = new TodoList itemWithId
-          @_uploadItems "todo", newList.todos, cb
+        qCb()
     , 1
 
     q.drain = () =>
-      if mainErr
-        return cb mainErr
-      cb items
+      if errors.length
+        return cb errors.join('\n')
+
+      cb null
 
     q.push items
 
@@ -85,17 +84,53 @@ class Api
     #
     # Offer a 'sync' step, that first does upload, then download, saving newly created IDs in local file
 
-    @downloadTodoLists (err, remoteLists) =>
-      if err
-        return cb err
+    async.waterfall [
+      (callback) =>
+        @downloadTodoLists (err, remoteLists) =>
+          if err
+            return callback err
 
-      # Save flat remote items
-      for remoteList in remoteLists
-        @remoteIds["list"][remoteList.id] = remoteList
-        for todo in remoteList.todos
-          @remoteIds["todo"][todo.id] = todo
+          remoteIds =
+            lists: {}
+            todos: {}
 
-      @_uploadItems "list", localLists.lists, cb
+          # Save flat remote items
+          for remoteList in remoteLists
+            remoteIds["lists"][remoteList.id] = remoteList
+            for todo in remoteList.todos
+              remoteIds["todos"][todo.id] = todo
+
+          debug util.inspect
+            beginRem: remoteIds
+
+          callback null, remoteIds
+
+      (remoteIds, callback) =>
+        @_uploadItems "lists", "name", localLists.lists, remoteIds, (err) =>
+          callback err, remoteIds
+
+      (remoteIds, callback) =>
+        allTodos = []
+        for list in localLists.lists
+          for todo in list.todos
+            if !todo
+              return callback new Error "No todo!"
+            if !todo.todolist_id?
+              todo.todolist_id = list.id
+            if !todo.todolist_id?
+              debug util.inspect
+                todo   : todo
+                list_id: list.id
+              return callback new Error "Todo's todolist_id should be known here!"
+
+            allTodos.push todo
+
+        @_uploadItems "todos", "content", allTodos, remoteIds, (err) =>
+          callback(err)
+
+    ], (err, res) =>
+      cb err
+
 
   downloadTodoLists: (cb) ->
     @_request @endpoints["todoLists"], null, (err, lists) =>
@@ -105,14 +140,17 @@ class Api
       # Determine lists to retrieve
       retrieveUrls = (list.url for list in lists when list.url?)
       if !retrieveUrls.length
-        return cb new Error "Found no urls in lists"
+        debug "Found no lists urls (yet)"
+        return cb null, []
 
       # The queue worker to retrieve the lists
-      lists = []
+      errors = []
+      lists  = []
       q = async.queue (url, callback) =>
         @_request url, null, (err, todoList) ->
           if err
-            debug "Error retrieving #{url}. #{err}"
+            errors.push "Error retrieving #{url}. #{err}"
+            return callback()
 
           lists.push todoList
           callback()
@@ -122,6 +160,9 @@ class Api
 
       # Return
       q.drain = ->
+        if errors.length
+          return cb errors.join('\n')
+
         cb null, lists
 
   _request: (opts, payload, cb) ->
@@ -148,16 +189,18 @@ class Api
     debug "#{opts.method.toUpperCase()} #{opts.url}"
     request[opts.method] opts, (err, req, data) =>
       status = "#{req.statusCode}"
+      # debug util.inspect
+      #   method: "#{opts.method.toUpperCase()}"
+      #   url   : opts.url
+      #   err   : err
+      #   status: status
+      #   data  : data
+
       if !status.match /[23][0-9]{2}/
         msg = "Status code #{status} during #{opts.method.toUpperCase()} '#{opts.url}'"
         err = new Error msg
         return cb err, data
 
-      debug util.inspect
-        method: opts.method.toUpperCase()
-        url   : opts.url
-        err   : err
-        data  : data
 
       if @vcr == true && opts.url.substr(0, 7) != "file://"
         debug "VCR: Recording #{opts.url} to disk so we can watch later : )"

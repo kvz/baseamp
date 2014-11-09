@@ -1,4 +1,3 @@
-require("source-map-support").install()
 util   = require "util"
 moment = require "moment"
 _      = require "underscore"
@@ -49,7 +48,7 @@ class Todo
     # Create
     opts =
       method : "post"
-      url    : endpoints["todoList"]
+      url    : endpoints["todos"]
       replace:
         todolist_id: @todolist_id
 

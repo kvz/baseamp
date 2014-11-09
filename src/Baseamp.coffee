@@ -1,4 +1,3 @@
-require("source-map-support").install()
 util        = require "util"
 fs          = require "fs"
 _           = require "underscore"

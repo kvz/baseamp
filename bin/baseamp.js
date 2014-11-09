@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // No coffee needed as this sources ./lib, not ./src:
 // var coffee  = require("coffee-script/register");
+require("source-map-support").install();
 var Baseamp = require("../");
 
 var required = [ "username", "password", "account_id", "project_id" ];
