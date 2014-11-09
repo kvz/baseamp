@@ -50,6 +50,9 @@ class Todo
       todolist_id: item.todolist_id
       completed  : item.completed
 
+    if item.completed
+      delete payload.position
+
     return payload
 
 

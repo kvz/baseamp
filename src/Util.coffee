@@ -11,6 +11,15 @@ class Util
 
     return id: id, line: line
 
+  @sortByObjField: (array, field) ->
+    array.sort (a, b) ->
+      if a[field] < b[field]
+        return -1
+      if a[field] > b[field]
+        return 1
+      return 0
+
+
   @template: (url, args...) ->
     replace = {}
     for params in args

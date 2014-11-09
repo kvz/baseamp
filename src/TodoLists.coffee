@@ -58,6 +58,8 @@ class TodoLists
 
   toMarkdown: ->
     buf = ""
+
+    Util.sortByObjField @lists, "position"
     for todoList in @lists
       buf += todoList.toMarkdown()
 

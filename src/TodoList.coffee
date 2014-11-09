@@ -83,6 +83,7 @@ class TodoList
     buf = "## #{@name} (##{@id})\n"
     buf += "\n"
 
+    Util.sortByObjField @todos, "position"
     for todo in @todos
       buf += todo.toMarkdown()
 
