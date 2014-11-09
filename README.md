@@ -76,9 +76,10 @@ Keep in mind that if you remove 1 item from a list, it can result in `position` 
 
 ## Todo
 
- - [ ] User mapping
  - [ ] Support for rate limiter (500 req/10 minutes)
  - [ ] Tests for upload
+ - [ ] Due date mapping
+ - [ ] User mapping
  - [x] Fix SKIPOSes
  - [x] Figure out how to deal with positioning. One update triggers many remotely.
  - [x] Sync (combining upload, download)

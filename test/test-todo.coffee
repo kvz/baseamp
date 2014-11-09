@@ -9,31 +9,7 @@ Todo        = require "../src/Todo"
 
 describe "todo", ->
   @timeout 10000 # <-- This is the Mocha timeout, allowing tests to run longer
-  describe "_formatName", ->
-    it "should be a unix handle", (done) ->
-      todo = new Todo
 
-      handle = todo._formatName "Fahad Ibnay Heylaal"
-      expect(handle).to.deep.equal "FIH"
-
-      handle = todo._formatName "Kevin van Zonneveld"
-      expect(handle).to.deep.equal "KVZ"
-
-      handle = todo._formatName "Tim Koschützki"
-      expect(handle).to.deep.equal "TIK"
-
-      handle = todo._formatName "Joe Danziger"
-      expect(handle).to.deep.equal "JOD"
-
-      handle = todo._formatName "JAW van Hocks"
-      expect(handle).to.deep.equal "JVH"
-
-      handle = todo._formatName "K.M. van Schagen"
-      expect(handle).to.deep.equal "KVS"
-
-      handle = todo._formatName "K.M. Schagen"
-      expect(handle).to.deep.equal "KMS"
-      done()
 
   describe "constructor", ->
     it "should be able to parse a markdown todo, adding in a default positions", (done) ->

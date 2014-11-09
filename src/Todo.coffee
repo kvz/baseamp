@@ -1,5 +1,4 @@
 util   = require "util"
-moment = require "moment"
 _      = require "underscore"
 debug  = require("debug")("Baseamp:Todo")
 Util   = require "./Util"
@@ -29,9 +28,16 @@ class Todo
     @todolist_id = Number todo.todolist_id
 
   fromApi: (input) ->
+    assignee = undefined
+    if input.assignee?
+      assignee = Util.formatNameAsUnixHandle input.assignee.name
+      debug "Received assignee from API: "
+      debug util.inspect
+        assignee: assignee
+
     todo =
       due_at     : input.due_at
-      assignee   : input.assignee?.name || input.assignee
+      assignee   : assignee
       id         : input.id
       content    : input.content
       completed  : input.completed
@@ -49,6 +55,7 @@ class Todo
       position   : item.position
       todolist_id: item.todolist_id
       completed  : item.completed
+      assignee   : item.assignee
 
     if item.completed
       delete payload.position
@@ -85,31 +92,6 @@ class Todo
 
     return todo
 
-  _formatDate: (str) ->
-    if !str
-      return "0000-00-00"
-
-    return moment(str).format("YYYY-MM-DD")
-
-  _formatName: (str) ->
-    if !str
-      return str
-
-    str = "#{str}"
-    str = str.replace /[^a-z\s]/i, ""
-
-    handle = ""
-    parts  = str.split /\s+/
-
-    first = 4 - parts.length
-    for part, i in parts
-      howMany = 1
-      if i == 0
-        howMany = first
-      handle += part.substr(0, howMany).toUpperCase()
-
-    return handle
-
   toMarkdown: () ->
     buf = " - "
     if @trashed
@@ -122,10 +104,10 @@ class Todo
       throw new Error "Unknown category"
 
     if @due_at?
-      buf += @_formatDate(@due_at) + " "
+      buf += Util.formatDate(@due_at) + " "
 
     if @assignee?
-      buf += @_formatName(@assignee) + " "
+      buf += Util.formatNameAsUnixHandle(@assignee) + " "
 
     buf += "#{@content} "
 

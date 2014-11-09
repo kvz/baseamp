@@ -12,6 +12,7 @@ TodoList  = require "./TodoList"
 class Api
   vcr      : false
   endpoints:
+    get_people: "https://basecamp.com/{{{account_id}}}/api/v1/people.json"
     get_lists : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
     post_lists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
     put_lists : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{item_id}}}.json"
@@ -20,7 +21,7 @@ class Api
 
   # I'm suspecting that we need to maintain order when
   # updating position on (automatically) many todos in a list
-  uploadConcurrency: 1
+  uploadConcurrency  : 1
   downloadConcurrency: 32
 
   constructor: (config) ->
@@ -59,10 +60,13 @@ class Api
 
     return item
 
+  _assigneeToCallsign: (assignee, remoteIds) ->
+
+  _callsignToAssignee: (assignee, remoteIds) ->
+
+
   _uploadItems: (type, displayField, items, remoteIds, cb) ->
     errors = []
-
-    positionChangesSaved = 0
 
     q = async.queue (item, qCb) =>
       item       = @_itemIdMatch type, displayField, item, remoteIds
@@ -70,16 +74,21 @@ class Api
       method     = if remoteItem? then "put" else "post"
       payload    = item.apiPayload()
 
-      # debug util.inspect
-      #   payload   : payload
-      #   remoteItem: remoteItem
-      if method == "put"
-        delta = @_itemDiffs type, remoteItem, displayField, payload
-
-        if delta.length == 0
-          # No changes
-          debug "SKIP #{@_human type, payload, displayField}"
+      # Map callsign with person ID
+      if payload.assignee?
+        personIdsWithCallsign = (person.id for id, person of remoteIds.people when person.call_sign == payload.assignee)
+        # debug "Found #{personIdsWithCallsign} #{personIdsWithCallsign.length} people with call_sign #{payload.assignee}"
+        if personIdsWithCallsign.length > 1
+          errors.push "These people have the same callsign! #{personIdsWithCallsign.join(', ')}. Please fix that first. "
           return qCb()
+        else if personIdsWithCallsign.length == 1
+          payload.assignee =
+            id  : person.id
+            type: "Person"
+
+      if method == "put" && !@_itemDiffs type, remoteItem, displayField, payload
+        debug "SKIP #{@_human type, payload, displayField}"
+        return qCb()
 
       debug "PUSH #{@_human type, payload, displayField}"
       opts =
@@ -118,28 +127,31 @@ class Api
     for key, val of payload
       if payload[key] != remoteItem[key]
         debug "CHANGE '#{@_human type, payload, displayField}'. Payload's key '#{key}' is '#{val}' while remoteItem's is '#{remoteItem[key]}'"
-        diff.push key
+        return true
 
-    return diff
+    return false
 
   uploadTodoLists: (localLists, cb) ->
-    # Steps:
-    #  - Download lists
-    #  - Match unique names and save ids in local version if those ids
-    #    don't exist locally & remotely (for resilience & id copy-paste errors)
-    #  - Compare lists by id, create new, update existing ones remotely
-    #
-    # Offer a 'sync' step, that first does upload, then download, saving newly created IDs in local file
+    remoteIds =
+      lists : {}
+      todos : {}
+      people: {}
 
     async.waterfall [
+      (callback) =>
+        @downloadPeople (err, people) =>
+          if err
+            return callback err
+
+          for person in people
+            remoteIds.people[person.id] = person
+
+          callback null
+
       (callback) =>
         @downloadTodoLists (err, remoteLists) =>
           if err
             return callback err
-
-          remoteIds =
-            lists: {}
-            todos: {}
 
           # Save flat remote items
           remoteTodoLists = new TodoLists remoteLists
@@ -148,13 +160,13 @@ class Api
             for todo in list.todos
               remoteIds["todos"][todo.id] = todo
 
-          callback null, remoteIds
+          callback null
 
-      (remoteIds, callback) =>
+      (callback) =>
         @_uploadItems "lists", "name", localLists.lists, remoteIds, (err) =>
-          callback err, remoteIds
+          callback err
 
-      (remoteIds, callback) =>
+      (callback) =>
         allTodos = []
         for list in localLists.lists
           for todo in list.todos
@@ -177,8 +189,19 @@ class Api
       cb err
 
 
+  downloadPeople: (cb) ->
+    debug "Retrieving people..."
+    @_request @endpoints["get_people"], null, (err, people) =>
+      if err
+        return cb err
+
+      for person, i in people
+        people[i].call_sign = Util.formatNameAsUnixHandle person.name
+
+      return cb null, people
+
   downloadTodoLists: (cb) ->
-    debug "Retrieving..."
+    debug "Retrieving todolists..."
     @_request @endpoints["get_lists"], null, (err, lists) =>
       if err
         return cb err

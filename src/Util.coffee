@@ -1,4 +1,5 @@
 Mustache = require "mustache"
+moment   = require "moment"
 
 class Util
   @extractId: (line) ->
@@ -19,7 +20,6 @@ class Util
         return 1
       return 0
 
-
   @template: (url, args...) ->
     replace = {}
     for params in args
@@ -28,5 +28,29 @@ class Util
 
     return Mustache.render url, replace
 
+  @formatDate: (str) ->
+    if !str
+      return "0000-00-00"
+
+    return moment(str).format("YYYY-MM-DD")
+
+  @formatNameAsUnixHandle: (str) ->
+    if !str
+      return str
+
+    str = "#{str}"
+    str = str.replace /[^a-z\s]/i, ""
+
+    handle = ""
+    parts  = str.split /\s+/
+
+    first = 4 - parts.length
+    for part, i in parts
+      howMany = 1
+      if i == 0
+        howMany = first
+      handle += part.substr(0, howMany).toUpperCase()
+
+    return handle
 
 module.exports = Util
