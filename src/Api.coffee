@@ -178,7 +178,7 @@ class Api
 
 
   downloadTodoLists: (cb) ->
-    debug "Downloading..."
+    debug "Retrieving..."
     @_request @endpoints["get_lists"], null, (err, lists) =>
       if err
         return cb err
