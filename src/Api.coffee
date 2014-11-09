@@ -34,13 +34,16 @@ class Api
   _itemIdMatch: (type, displayField, item, remoteIds) ->
     # Save remote list IDs to local missing/broken ones
     # Match by unique name
-    if !item.id || !remoteItem?
+    if !item.id || !remoteIds[type][item.id]?
       # this ID might be improved
       remoteItemsWithSameName = (remoteItem for remoteId, remoteItem of remoteIds[type] when remoteItem[displayField] == item[displayField])
 
-      # update last item with identical name/content
       if remoteItemsWithSameName.length
+        # update last item with identical name/content
         item.id = remoteItemsWithSameName[remoteItemsWithSameName.length - 1].id
+      else
+        # clear it, as we probably made a local typo and we don't want remote 404s
+        item.id = undefined
 
     return item
 
