@@ -16,16 +16,19 @@ class TodoList
 
     _.defaults todoList, defaults
 
-    @id       = todoList.id
+    if todoList.id?
+      @id = Number todoList.id
+
     @name     = todoList.name
-    @position = todoList.position
+    @position = Number todoList.position
     @todos    = todoList.todos
 
   fromApi: (input) ->
     todoList =
-      id   : input.id
-      name : input.name
-      todos: []
+      id      : input.id
+      name    : input.name
+      position: input.position
+      todos   : []
 
     for category, apiTodos of input.todos
       for apiTodo in apiTodos
@@ -67,7 +70,6 @@ class TodoList
 
     str         = "#{str}".replace "\r", ""
     lines       = str.split "\n"
-    cntPosition = 0
     for line in lines
       # Extract Header
       m = line.match /^##\s+(.+)$/
@@ -82,9 +84,8 @@ class TodoList
         continue
 
       # Add todo
-      cntPosition++
       todo = new Todo line,
-        position   : cntPosition
+        position   : todoList.todos.length + 1
         todolist_id: todoList.id
       if todo?
         todoList.todos.push todo

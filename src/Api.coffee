@@ -34,7 +34,7 @@ class Api
   _itemIdMatch: (type, displayField, item, remoteIds) ->
     # Save remote list IDs to local missing/broken ones
     # Match by unique name
-    if !item.id || !remoteIds[type][item.id]?
+    if !item.id || !remoteItem?
       # this ID might be improved
       remoteItemsWithSameName = (remoteItem for remoteId, remoteItem of remoteIds[type] when remoteItem[displayField] == item[displayField])
 
@@ -49,8 +49,16 @@ class Api
 
     q = async.queue (item, qCb) =>
       item              = @_itemIdMatch type, displayField, item, remoteIds
-      isUpdate          = remoteIds[type][item.id]?
+      remoteItem        = remoteIds[type][item.id]
+      isUpdate          = remoteItem?
       { opts, payload } = item.apiPayload isUpdate, @endpoints
+
+      # debug util.inspect
+      #   payload   : payload
+      #   remoteItem: remoteItem
+      if isUpdate && !@_itemDiffs remoteItem, displayField, payload
+        debug "SKIP #{item[displayField]}"
+        return qCb()
 
       # debug util.inspect
       #   remoteIds:remoteIds[type]
@@ -75,6 +83,14 @@ class Api
       cb null
 
     q.push items
+
+  _itemDiffs: (remoteItem, displayField, payload) ->
+    for key, val of payload
+      if payload[key] != remoteItem[key]
+        debug "Items #{payload[displayField]} diffs becasue payload key #{key} #{payload[key]} != remoteItem's: #{remoteItem[key]}"
+        return true
+
+    return false
 
   uploadTodoLists: (localLists, cb) ->
     # Steps:

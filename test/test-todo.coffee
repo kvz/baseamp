@@ -43,7 +43,7 @@ describe "todo", ->
       expect(t.due).to.equal undefined
       expect(t.assignee).to.equal undefined
       expect(t.position).to.equal 99
-      expect(t.category).to.equal "completed"
+      expect(t.completed).to.equal true
       expect(t.content).to.equal "Upgrade stunnel and turn off SSLv3"
       expect(t.id).to.equal undefined
       done()
@@ -56,7 +56,7 @@ describe "todo", ->
       expect(t).to.deep.equal
         due_at  : undefined
         assignee: undefined
-        category: "completed"
+        completed: true
         content : "Upgrade stunnel and turn off SSLv3"
         id      : undefined
       done()
@@ -68,7 +68,7 @@ describe "todo", ->
       expect(t).to.deep.equal
         due_at  : "2014-10-26"
         assignee: "KVZ"
-        category: "remaining"
+        completed: false
         content : "Upgrade stunnel and turn off SSLv3 (again) https://assets.digitalocean.com/email/POODLE_email.html"
         id      : "133039174"
       done()
@@ -84,6 +84,6 @@ describe "todo", ->
 
       expect(t.id).to.equal 22
       expect(t.content).to.equal "Add ffmpeg new stack lists, link them, show lists which formats they support and which not directly in the docs, when one should use which and then also show the preset contents for each stack version"
-      expect(t.category).to.equal "remaining"
+      expect(t.completed).to.equal false
 
       done()

@@ -23,9 +23,9 @@ describe "todoLists", ->
       """
 
       expect(tLists.lists.length).to.equal 2
-      expect(tLists.lists[1]["id"]).to.equal "1234"
+      expect(tLists.lists[1]["id"]).to.equal 1234
       expect(tLists.lists[1]["position"]).to.equal 2
-      expect(tLists.lists[1]["todos"][0].category).to.equal "completed"
+      expect(tLists.lists[1]["todos"][0].completed).to.equal true
 
       done()
 

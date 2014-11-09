@@ -18,29 +18,25 @@ class Todo
     if !todo?
       return
 
-    @due_at   = todo.due_at
-    @assignee = todo.assignee
-    @id       = todo.id
-    @content  = todo.content
-    @category = todo.category
-    @position = todo.position
+    if todo.id?
+      @id = Number todo.id
+
+    @due_at      = todo.due_at
+    @assignee    = todo.assignee
+    @content     = todo.content
+    @completed   = todo.completed
+    @position    = Number todo.position
+    @todolist_id = Number todo.todolist_id
 
   fromApi: (input) ->
-    category = "remaining"
-
-    if input.completed == true
-      category = "completed"
-
-    if input.trashed == true
-      category = "trashed"
-
     todo =
-      due_at   : input.due_at
-      assignee : input.assignee?.name || input.assignee
-      id       : input.id
-      content  : input.content
-      category : category
-      completed: if category == "completed" then true else false
+      due_at     : input.due_at
+      assignee   : input.assignee?.name || input.assignee
+      id         : input.id
+      content    : input.content
+      completed  : input.completed
+      position   : input.position
+      todolist_id: input.todolist_id
 
     return todo
 
@@ -96,7 +92,7 @@ class Todo
     todo =
       due_at  : m[3]
       assignee: m[5]
-      category: if m[1] == 'x' then "completed" else "remaining"
+      completed: if m[1] == 'x' then true else false
       content : m[6]
       id      : id
 
@@ -129,14 +125,14 @@ class Todo
 
   toMarkdown: () ->
     buf = " - "
-    if @category == "completed"
-      buf += "[x] "
-    else if @category == "remaining"
-      buf += "[ ] "
-    else if @category == "trashed"
+    if @trashed
       return ""
+    else if @completed == true
+      buf += "[x] "
+    else if @completed == false
+      buf += "[ ] "
     else
-      throw new Error "Unknown category #{@category}"
+      throw new Error "Unknown category"
 
     if @due_at?
       buf += @_formatDate(@due_at) + " "

@@ -41,15 +41,13 @@ class TodoLists
       lists: []
 
     parts       = str.split /^##\s+/m
-    cntPosition = 0
     for part in parts
       if !part.trim()
         continue
 
       part = "## #{part}"
-      cntPosition++
       todoLists.lists.push new TodoList part,
-        position: cntPosition
+        position: todoLists.lists.length + 1
 
     return todoLists
 

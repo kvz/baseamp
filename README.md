@@ -77,8 +77,8 @@ You should do a *download* after every *upload*, in order to save the IDs locall
  - [ ] User mapping
  - [ ] Sync (combining upload, download)
  - [ ] Support for rate limiter (500 req/10 minutes)
- - [ ] Skip updates if payload is equal
  - [ ] Tests for upload
+ - [x] Skip uploads if payload is equal
  - [-] ~~Make upload support STDIN~~
  - [x] Upload
  - [x] Rename download to download, upload to upload
