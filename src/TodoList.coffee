@@ -40,28 +40,15 @@ class TodoList
 
     return todoList
 
-  apiPayload: (update, endpoints) ->
-    # Create
-    opts =
-      method: "post"
-      url   : endpoints["todoLists"]
+  apiPayload: (item) ->
+    if !item?
+      item = this
 
     payload =
-      name: @name
-      payload: @position
+      name    : item.name
+      position: item.position
 
-    # Update
-    if update
-      opts.method  = "put"
-      opts.url     = endpoints["todoList"]
-      opts.replace =
-        todolist_id: @id
-
-    ret =
-      opts   :opts
-      payload:payload
-
-    return ret
+    return payload
 
   fromMarkdown: (str) ->
     todoList =

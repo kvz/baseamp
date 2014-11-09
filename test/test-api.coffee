@@ -10,7 +10,7 @@ api         = new Api
   password  : "test"
   account_id: "test"
   project_id: "test"
-api.endpoints.todoLists = "file://{{{fixture_dir}}}/6904769.todolists.json"
+api.endpoints.get_lists = "file://{{{fixture_dir}}}/6904769.todolists.json"
 
 describe "api", ->
   @timeout 10000 # <-- This is the Mocha timeout, allowing tests to run longer

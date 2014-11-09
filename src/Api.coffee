@@ -12,10 +12,11 @@ TodoList  = require "./TodoList"
 class Api
   vcr      : false
   endpoints:
-    todoLists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
-    todoList : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{todolist_id}}}.json"
-    todos    : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{todolist_id}}}/todos.json"
-    todo     : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todos/{{{todo_id}}}.json"
+    get_lists : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
+    post_lists: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists.json"
+    put_lists : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{item_id}}}.json"
+    post_todos: "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todolists/{{{item_id}}}/todos.json"
+    put_todos : "https://basecamp.com/{{{account_id}}}/api/v1/projects/{{{project_id}}}/todos/{{{item_id}}}.json"
 
   constructor: (config) ->
     @config = config || {}
@@ -46,28 +47,42 @@ class Api
       # clear it, as we probably made a local typo and we don't want remote 404s
       item.id = undefined
 
+    # Cascade possible change down onto todos
+    if type == "lists"
+      for todo in item.todos
+        todo.todolist_id = item.id
+
     return item
 
   _uploadItems: (type, displayField, items, remoteIds, cb) ->
     errors = []
 
     q = async.queue (item, qCb) =>
-      item              = @_itemIdMatch type, displayField, item, remoteIds
-      remoteItem        = remoteIds[type][item.id]
-      isUpdate          = remoteItem?
-      { opts, payload } = item.apiPayload isUpdate, @endpoints
-      payload           = @_itemIdMatch type, displayField, payload, remoteIds
+      item       = @_itemIdMatch type, displayField, item, remoteIds
+      remoteItem = remoteIds[type][item.id]
+      method     = if remoteItem? then "put" else "post"
+      payload    = item.apiPayload()
+
+      opts =
+        method : method
+        url    : @endpoints["#{method}_#{type}"]
+        replace:
+          item_id: item.id
+
+      if method == "post" && type = "todos"
+        opts.replace =
+          item_id: item.todolist_id
 
       # debug util.inspect
       #   payload   : payload
       #   remoteItem: remoteItem
-      if isUpdate && !@_itemDiffs remoteItem, displayField, payload
-        debug "SKIP #{item[displayField]}"
+      if method == "put" && !@_itemDiffs remoteItem, displayField, payload
+        debug "SKIP #{@_human payload, displayField}"
         return qCb()
 
       # debug util.inspect
       #   remoteIds:remoteIds[type]
-      #   isUpdate :isUpdate
+      #   method   : method
       #   item     :item
       #   opts     :opts
 
@@ -89,10 +104,13 @@ class Api
 
     q.push items
 
+  _human: (item, displayField) ->
+    return item[displayField].substr(0, 20)
+
   _itemDiffs: (remoteItem, displayField, payload) ->
     for key, val of payload
       if payload[key] != remoteItem[key]
-        debug "Items #{payload[displayField]} diffs becasue payload key #{key} #{payload[key]} != remoteItem's: #{remoteItem[key]}"
+        debug "CHANGE '#{@_human payload, displayField}'. Payload's key '#{key}' is '#{val}' while remoteItem's is '#{remoteItem[key]}'"
         return true
 
     return false
@@ -153,7 +171,7 @@ class Api
 
 
   downloadTodoLists: (cb) ->
-    @_request @endpoints["todoLists"], null, (err, lists) =>
+    @_request @endpoints["get_lists"], null, (err, lists) =>
       if err
         return cb err
 
