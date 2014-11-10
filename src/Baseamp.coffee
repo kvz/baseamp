@@ -78,6 +78,6 @@ class Baseamp
         if err
           return cb err
 
-        cb null, "#{stdoutUpload}\n#{stdoutDownload}", "#{stderrUpload}\n#{stderrDownload}"
+        cb null, "#{stdoutUpload}#{stdoutDownload}", "#{stderrUpload}#{stderrDownload}"
 
 module.exports = Baseamp

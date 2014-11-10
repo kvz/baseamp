@@ -80,6 +80,7 @@ Keep in mind that if you remove 1 item from a list, it can result in `position` 
  - [ ] Remove unnecessary fat arrows
  - [ ] Tests for upload
  - [ ] remoteIds should be an instance variable (deal with async scope tho)
+ - [ ] Summarize changes. Use that to avoid a double `Retrieving todolists...`
  - [x] Due date mapping
  - [x] User mapping
  - [x] Fix SKIPOSes

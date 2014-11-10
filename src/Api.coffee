@@ -103,7 +103,7 @@ class Api
         payload.assignee = @_personIdMatch payload.assignee, remoteIds
 
       if method == "put" && !@_itemDiffs type, remoteItem, displayField, payload, remoteIds
-        debug "SKIP #{@_human type, payload, displayField}"
+        # debug "SKIP #{@_human type, payload, displayField}"
         return qCb()
 
       debug "PUSH #{@_human type, payload, displayField}"
