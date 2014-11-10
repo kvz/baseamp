@@ -1,5 +1,6 @@
 util        = require "util"
 fs          = require "fs"
+async       = require "async"
 _           = require "underscore"
 debug       = require("debug")("Baseamp:Baseamp")
 TodoLists   = require "./TodoLists"
@@ -45,14 +46,27 @@ class Baseamp
     buf       = fs.readFileSync file, "utf-8"
     todoLists = new TodoLists buf
 
-    @api.uploadTodoLists todoLists, (err, stats) ->
+    counter = 0
+    changes = -1
+
+    # Hack to deal with position shifts that we did not
+    # issue, but are a result of reordering on the
+    # server-side. Keep looping until there are 0 changes:
+    cbDone = (err, stats) =>
       if err
-        return cb err
+        return callback err
 
-      stderr += "Pushed #{stats.listsPushed} lists and #{stats.todosPushed} todos. \n"
+      changes  = stats.listsPushed + stats.todosPushed
+      counter += changes
+      debug "changes = #{changes}"
 
+      if changes > 0
+        @api.uploadTodoLists todoLists, cbDone
+      else
+        stderr += "Uploaded #{counter} changes. \n"
+        cb err, stdout, stderr
 
-      cb null, stdout, stderr
+    @api.uploadTodoLists todoLists, cbDone
 
   download: (file, cb) ->
     @api.downloadTodoLists (err, todoLists) ->

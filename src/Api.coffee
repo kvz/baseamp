@@ -131,7 +131,7 @@ class Api
 
     q.drain = () =>
       if errors.length
-        return cb errors.join('\n')
+        return cb errors.join("\n")
 
       cb null, pushed
 
