@@ -71,7 +71,13 @@ class Baseamp
 
   sync: (file, cb) ->
     @upload file, (err, stdoutUpload, stderrUpload) =>
+      if err
+        return cb err
+
       @download file, (err, stdoutDownload, stderrDownload) =>
+        if err
+          return cb err
+
         cb null, "#{stdoutUpload}\n#{stdoutDownload}", "#{stderrUpload}\n#{stderrDownload}"
 
 module.exports = Baseamp

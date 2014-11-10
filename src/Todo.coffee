@@ -31,9 +31,6 @@ class Todo
     assignee = undefined
     if input.assignee?
       assignee = Util.formatNameAsUnixHandle input.assignee.name
-      debug "Received assignee from API: "
-      debug util.inspect
-        assignee: assignee
 
     todo =
       due_at     : input.due_at
@@ -55,7 +52,11 @@ class Todo
       position   : item.position
       todolist_id: item.todolist_id
       completed  : item.completed
-      assignee   : item.assignee
+      due_at     : item.due_at || null
+      assignee   : item.assignee || null
+
+    # ^-- Sending a payload with assignee set to null will un-assign
+    # the todo, and setting due_at to null will remove the due date.
 
     if item.completed
       delete payload.position

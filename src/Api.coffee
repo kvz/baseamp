@@ -61,9 +61,33 @@ class Api
     return item
 
   _assigneeToCallsign: (assignee, remoteIds) ->
+    if !assignee?
+      return undefined
 
-  _callsignToAssignee: (assignee, remoteIds) ->
+    if assignee.callsign?
+      return assignee.callsign
 
+    if assignee.name?
+      return Util.formatNameAsUnixHandle assignee.name
+
+    if assignee.id?
+      throw new Error "#{assignee.id}"
+
+      return remoteIds.people[assignee.id].callsign
+
+    if "#{assignee}".toUpperCase().substr(0, 3) == assignee
+      return assignee
+
+    throw new Error "Panic! Not sure how to handle assignee translation"
+
+  _personIdMatch: (callsign, remoteIds) ->
+    for id, person of remoteIds.people
+      if person.callsign == callsign
+        assignee =
+          id  : person.id
+          name: person.name
+          type: "Person"
+        return assignee
 
   _uploadItems: (type, displayField, items, remoteIds, cb) ->
     errors = []
@@ -76,17 +100,9 @@ class Api
 
       # Map callsign with person ID
       if payload.assignee?
-        personIdsWithCallsign = (person.id for id, person of remoteIds.people when person.call_sign == payload.assignee)
-        # debug "Found #{personIdsWithCallsign} #{personIdsWithCallsign.length} people with call_sign #{payload.assignee}"
-        if personIdsWithCallsign.length > 1
-          errors.push "These people have the same callsign! #{personIdsWithCallsign.join(', ')}. Please fix that first. "
-          return qCb()
-        else if personIdsWithCallsign.length == 1
-          payload.assignee =
-            id  : person.id
-            type: "Person"
+        payload.assignee = @_personIdMatch payload.assignee, remoteIds
 
-      if method == "put" && !@_itemDiffs type, remoteItem, displayField, payload
+      if method == "put" && !@_itemDiffs type, remoteItem, displayField, payload, remoteIds
         debug "SKIP #{@_human type, payload, displayField}"
         return qCb()
 
@@ -122,11 +138,17 @@ class Api
   _human: (type, item, displayField) ->
     return "#{type} " + item[displayField].substr(0, 20)
 
-  _itemDiffs: (type, remoteItem, displayField, payload) ->
+  _itemDiffs: (type, remoteItem, displayField, payload, remoteIds) ->
     diff = []
     for key, val of payload
-      if payload[key] != remoteItem[key]
-        debug "CHANGE '#{@_human type, payload, displayField}'. Payload's key '#{key}' is '#{val}' while remoteItem's is '#{remoteItem[key]}'"
+      remVal = remoteItem[key]
+
+      if key == "assignee"
+        val    = @_assigneeToCallsign val, remoteIds
+        remVal = @_assigneeToCallsign remVal, remoteIds
+
+      if val != remVal
+        debug "CHANGE '#{@_human type, payload, displayField}'. Payload's '#{key}' is '#{val}' while remoteItem's is '#{remVal}'"
         return true
 
     return false
@@ -188,15 +210,21 @@ class Api
     ], (err, res) =>
       cb err
 
-
   downloadPeople: (cb) ->
     debug "Retrieving people..."
+    callsigns = []
     @_request @endpoints["get_people"], null, (err, people) =>
       if err
         return cb err
 
       for person, i in people
-        people[i].call_sign = Util.formatNameAsUnixHandle person.name
+        callsign = Util.formatNameAsUnixHandle person.name
+
+        if callsign in callsigns
+          return cb new Error "There are multiple people with the callsign '#{callsign}'. Please fix that first. "
+
+        callsigns.push callsign
+        people[i].callsign = callsign
 
       return cb null, people
 
@@ -258,14 +286,15 @@ class Api
     # debug "#{opts.method.toUpperCase()} #{opts.url}"
     request[opts.method] opts, (err, req, data) =>
       status = "#{req.statusCode}"
-      # debug util.inspect
-      #   method: "#{opts.method.toUpperCase()}"
-      #   url   : opts.url
-      #   err   : err
-      #   status: status
-      #   data  : data
 
       if !status.match /[23][0-9]{2}/
+        debug util.inspect
+          method : "#{opts.method.toUpperCase()}"
+          url    : opts.url
+          err    : err
+          status : status
+          data   : data
+          payload: payload
         msg = "Status code #{status} during #{opts.method.toUpperCase()} '#{opts.url}'"
         err = new Error msg
         return cb err, data
