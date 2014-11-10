@@ -56,6 +56,10 @@ $ baseamp sync ./Our-Todos.md
 
 ## Sync Behavior & Limitations
 
+Because our two datasources (a markdown file and the basecamp api) weren't really designed to run in sync, Baseamps syncing is far from perfect.
+
+Here are pointers on behavior and things to watch out for.
+
 When uploading, Baseamp:
 
  - creates lists & todos that do not exists
