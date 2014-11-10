@@ -22,6 +22,9 @@ compile:
 download-real:
 	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js download ~/workspace/internals/Basecamp.md
 
+upload-real:
+	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js upload ~/workspace/internals/Basecamp.md
+
 sync-real:
 	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js sync ~/workspace/internals/Basecamp.md
 
@@ -54,6 +57,7 @@ release-patch: build test
 	lint \
 	build \
 	download-real \
+	upload-real \
 	sync-real \
 	run-download \
 	run-upload \
