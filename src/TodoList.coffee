@@ -78,11 +78,14 @@ class TodoList
 
       # Correct position for completed items
       if todo?
-        if !todo.completed
+        if todo.trashed
+          continue
+
+        if todo.completed
+          todo.position = undefined
+        else
           position++
           todo.position = position
-        else
-          todo.position = undefined
 
         todoList.todos.push todo
 
