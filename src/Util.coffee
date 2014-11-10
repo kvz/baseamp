@@ -12,13 +12,18 @@ class Util
 
     return id: id, line: line
 
-  @sortByObjField: (array, field) ->
+  @sortByObjField: (array, fields...) ->
     array.sort (a, b) ->
-      if a[field] < b[field]
-        return -1
+      for field in fields
+        negate = 1
+        if field == "completed"
+          negate = -1
 
-      if a[field] > b[field]
-        return 1
+        if a[field] < b[field]
+          return -1 * negate
+
+        if a[field] > b[field]
+          return 1 * negate
 
       return 0
 

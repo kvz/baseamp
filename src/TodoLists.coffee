@@ -20,6 +20,25 @@ class TodoLists
     # @name  = todoList.name
     @lists = todoLists.lists
 
+  searchBetween: (start, end) ->
+    if start == "lwtw"
+      start = +moment().day(-6) # last monday
+      end   = +moment().day(8) # next monday
+    else
+      start = +moment(start)
+      end   = +moment(end)
+
+    todosInRange = []
+    for list in @lists
+      for todo in list.todos
+        if todo.due_at?
+          due_at = +moment(todo.due_at)
+          if due_at >= start && due_at <= end
+            todosInRange.push todo
+
+    Util.sortByObjField todosInRange, "due_at", "completed"
+    return todosInRange
+
 
   fromApi: (input) ->
     # This nesting screems for refactoring at first sight.

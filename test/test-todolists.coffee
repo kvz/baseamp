@@ -44,3 +44,21 @@ describe "todoLists", ->
 
       done()
 
+  describe "searchBetween", ->
+    it "should search between dates", (done) ->
+      todoLists = new TodoLists """
+        ## My First list (#1233)
+
+         - [ ] 2014-10-21 KVZ Fix all first bugs (#41)
+
+        ## My Second list (#1234)
+
+         - [x] 2014-10-22 KVZ Fix all second bugs (#42)
+      """
+
+      todos = todoLists.searchBetween "2014-10-22", "2014-10-22"
+
+      expect(todos.length).to.equal 1
+
+      done()
+

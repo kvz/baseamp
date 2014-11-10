@@ -39,6 +39,20 @@ class Baseamp
 
     cb null, stdout, stderr
 
+  weekstarter: (file, cb) ->
+    stderr = "Read todo from #{file}\n"
+    stdout = ""
+
+    buf       = fs.readFileSync file, "utf-8"
+    todoLists = new TodoLists buf
+    todos     = todoLists.searchBetween "lwtw"
+    for todo in todos
+      stdout += todo.toMarkdown()
+
+    cb null, stdout, stderr
+
+
+
   upload: (file, cb) ->
     stderr = "Read todo from #{file}\n"
     stdout = ""

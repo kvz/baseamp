@@ -83,6 +83,7 @@ Keep in mind that if you remove 1 item from a list, it can result in `position` 
  - [ ] Tests for upload
  - [ ] remoteIds should be an instance variable (deal with async scope tho)
  - [ ] Summarize changes. Use that to avoid a double `Retrieving todolists...`
+ - [x] Add `weekstarter` mode, gives a quick overview of Last week / This week
  - [x] Write completed todos at bottom of md list
  - [x] Better positioning
  - [x] Due date mapping
