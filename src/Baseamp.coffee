@@ -54,7 +54,7 @@ class Baseamp
     # server-side. Keep looping until there are 0 changes:
     cbDone = (err, stats) =>
       if err
-        return callback err
+        return cb err
 
       changes  = stats.listsPushed + stats.todosPushed
       counter += changes
