@@ -38,6 +38,7 @@ class TodoList
         if todo?
           todoList.todos.push todo
 
+    Util.sortByObjField todoList.todos, "position"
     return todoList
 
   apiPayload: (item) ->
@@ -54,8 +55,9 @@ class TodoList
     todoList =
       todos: []
 
-    str         = "#{str}".replace "\r", ""
-    lines       = str.split "\n"
+    str      = "#{str}".replace "\r", ""
+    lines    = str.split "\n"
+    position = 0
     for line in lines
       # Extract Header
       m = line.match /^##\s+(.+)$/
@@ -74,7 +76,14 @@ class TodoList
         position   : todoList.todos.length + 1
         todolist_id: todoList.id
 
+      # Correct position for completed items
       if todo?
+        if !todo.completed
+          position++
+          todo.position = position
+        else
+          todo.position = undefined
+
         todoList.todos.push todo
 
     return todoList
@@ -84,7 +93,10 @@ class TodoList
     buf += "\n"
 
     Util.sortByObjField @todos, "position"
-    for todo in @todos
+    for todo in @todos when todo.completed == false
+      buf += todo.toMarkdown()
+
+    for todo in @todos when todo.completed == true
       buf += todo.toMarkdown()
 
     buf += "\n"

@@ -66,11 +66,13 @@ When downloading, Baseamp:
 
  - Extracts full Todolists of a project, and saves them to a markdown file (or STDOUT), overwriting anything that was already there.
 
+When syncing, Baseamp:
+
+ - Does a *download* after an *upload*, in order to save the IDs locally of newly created todos. Recommended mode of operation. Only works against a local `.md` file, not with STDIN/OUT
+
 Baseamp cannot sync a todo's attachments or contents, but also won't override them, so you can safely use the webinterface to enrich todos.
 
 There is no concept of sub-todos.
-
-You should do a *download* after every *upload*, in order to save the IDs locally of newly created todos.
 
 Keep in mind that if you remove 1 item from a list, it can result in `position` updates for siblings in that list.
 
@@ -81,6 +83,8 @@ Keep in mind that if you remove 1 item from a list, it can result in `position` 
  - [ ] Tests for upload
  - [ ] remoteIds should be an instance variable (deal with async scope tho)
  - [ ] Summarize changes. Use that to avoid a double `Retrieving todolists...`
+ - [x] Write completed todos at bottom of md list
+ - [x] Better positioning
  - [x] Due date mapping
  - [x] User mapping
  - [x] Fix SKIPOSes

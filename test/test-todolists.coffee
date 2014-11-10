@@ -37,9 +37,10 @@ describe "todoLists", ->
       tLists    = todoLists.fromApi input
 
       expect(tLists.lists.length).to.equal 13
-      expect(tLists.lists[1]["id"]).to.equal 22
-      expect(tLists.lists[1]["name"]).to.equal "Bugs (this list should always be emptied first)"
-      expect(tLists.lists[1]["todos"].length).to.equal 0
+      expect(tLists.lists[0]["id"]).to.equal 22
+      expect(tLists.lists[0]["position"]).to.equal 21
+      expect(tLists.lists[0]["name"]).to.equal "Bugs (this list should always be emptied first)"
+      expect(tLists.lists[0]["todos"].length).to.equal 0
 
       done()
 

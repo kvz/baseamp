@@ -45,9 +45,12 @@ class Baseamp
     buf       = fs.readFileSync file, "utf-8"
     todoLists = new TodoLists buf
 
-    @api.uploadTodoLists todoLists, (err) ->
+    @api.uploadTodoLists todoLists, (err, stats) ->
       if err
         return cb err
+
+      stderr += "Pushed #{stats.listsPushed} lists and #{stats.todosPushed} todos. \n"
+
 
       cb null, stdout, stderr
 

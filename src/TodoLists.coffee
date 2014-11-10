@@ -34,6 +34,7 @@ class TodoLists
     for list in input
       todoLists.lists.push new TodoList list
 
+    Util.sortByObjField todoLists.lists, "position"
     return todoLists
 
   fromMarkdown: (str) ->

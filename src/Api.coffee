@@ -21,7 +21,7 @@ class Api
 
   # I'm suspecting that we need to maintain order when
   # updating position on (automatically) many todos in a list
-  uploadConcurrency  : 1
+  uploadConcurrency  : 32
   downloadConcurrency: 32
 
   constructor: (config) ->
@@ -91,6 +91,7 @@ class Api
 
   _uploadItems: (type, displayField, items, remoteIds, cb) ->
     errors = []
+    pushed = 0
 
     q = async.queue (item, qCb) =>
       item       = @_itemIdMatch type, displayField, item, remoteIds
@@ -106,7 +107,8 @@ class Api
         # debug "SKIP #{@_human type, payload, displayField}"
         return qCb()
 
-      debug "PUSH #{@_human type, payload, displayField}"
+      debug "PUSH   #{@_human type, payload, displayField}"
+      pushed++
       opts =
         method : method
         url    : @endpoints["#{method}_#{type}"]
@@ -131,12 +133,17 @@ class Api
       if errors.length
         return cb errors.join('\n')
 
-      cb null
+      cb null, pushed
 
     q.push items
 
   _human: (type, item, displayField) ->
-    return "#{type} " + item[displayField].substr(0, 20)
+    abbr = item[displayField].substr(0, 20)
+
+    if abbr != item[displayField]
+      abbr += "..."
+
+    return "#{type} " + abbr
 
   _itemDiffs: (type, remoteItem, displayField, payload, remoteIds) ->
     diff = []
@@ -148,7 +155,7 @@ class Api
         remVal = @_assigneeToCallsign remVal, remoteIds
 
       if val != remVal
-        debug "CHANGE '#{@_human type, payload, displayField}'. Payload's '#{key}' is '#{val}' while remoteItem's is '#{remVal}'"
+        debug "CHANGE #{@_human type, payload, displayField}. Payload's '#{key}' is '#{val}' while remoteItem's is '#{remVal}'"
         return true
 
     return false
@@ -158,6 +165,8 @@ class Api
       lists : {}
       todos : {}
       people: {}
+
+    stats = {}
 
     async.waterfall [
       (callback) =>
@@ -185,7 +194,8 @@ class Api
           callback null
 
       (callback) =>
-        @_uploadItems "lists", "name", localLists.lists, remoteIds, (err) =>
+        @_uploadItems "lists", "name", localLists.lists, remoteIds, (err, pushed) =>
+          stats.listsPushed = pushed
           callback err
 
       (callback) =>
@@ -204,14 +214,15 @@ class Api
 
             allTodos.push todo
 
-        @_uploadItems "todos", "content", allTodos, remoteIds, (err) =>
+        @_uploadItems "todos", "content", allTodos, remoteIds, (err, pushed) =>
+          stats.todosPushed = pushed
           callback(err)
 
     ], (err, res) =>
-      cb err
+      cb err, stats
 
   downloadPeople: (cb) ->
-    debug "Retrieving people..."
+    debug "INFO   Retrieving people..."
     callsigns = []
     @_request @endpoints["get_people"], null, (err, people) =>
       if err
@@ -229,7 +240,7 @@ class Api
       return cb null, people
 
   downloadTodoLists: (cb) ->
-    debug "Retrieving todolists..."
+    debug "INFO   Retrieving todolists..."
     @_request @endpoints["get_lists"], null, (err, lists) =>
       if err
         return cb err
@@ -237,7 +248,7 @@ class Api
       # Determine lists to retrieve
       retrieveUrls = (list.url for list in lists when list.url?)
       if !retrieveUrls.length
-        debug "Found no lists urls (yet)"
+        debug "INFO   Found no lists urls (yet)"
         return cb null, []
 
       # The queue worker to retrieve the lists

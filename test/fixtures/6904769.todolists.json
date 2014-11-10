@@ -27,7 +27,7 @@
     "created_at": "2014-10-22T17:42:40.000+04:00",
     "updated_at": "2014-10-22T18:59:19.000+04:00",
     "completed": false,
-    "position": 22,
+    "position": 21,
     "private": false,
     "trashed": false,
     "url": "file://{{{fixture_dir}}}/6904769.todolists.21402412.json",
