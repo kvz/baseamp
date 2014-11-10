@@ -21,7 +21,7 @@ class Api
 
   # I'm suspecting that we need to maintain order when
   # updating position on (automatically) many todos in a list
-  uploadConcurrency  : 32
+  uploadConcurrency  : 1
   downloadConcurrency: 32
 
   constructor: (config) ->
