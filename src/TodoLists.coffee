@@ -21,12 +21,8 @@ class TodoLists
     @lists = todoLists.lists
 
   searchBetween: (start, end) ->
-    if start == "lwtw"
-      start = +moment().day(-6) # last monday
-      end   = +moment().day(8) # next monday
-    else
-      start = +moment(start)
-      end   = +moment(end)
+    start = +moment(start)
+    end   = +moment(end)
 
     todosInRange = []
     for list in @lists

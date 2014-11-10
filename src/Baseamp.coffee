@@ -1,6 +1,7 @@
 util        = require "util"
 fs          = require "fs"
 async       = require "async"
+moment      = require "moment"
 _           = require "underscore"
 debug       = require("debug")("Baseamp:Baseamp")
 TodoLists   = require "./TodoLists"
@@ -43,15 +44,29 @@ class Baseamp
     stderr = "Read todo from #{file}\n"
     stdout = ""
 
+    start = +moment().day(-6) # last monday
+    mid   = +moment().day(1) # this monday
+    end   = +moment().day(8)  # next monday
+
     buf       = fs.readFileSync file, "utf-8"
     todoLists = new TodoLists buf
-    todos     = todoLists.searchBetween "lwtw"
+    todos     = todoLists.searchBetween start, end
     for todo in todos
+      due_at = +moment(todo.due_at)
+      if due_at >= start && due_at < mid
+        week = "Last"
+      if due_at >= mid && due_at <= end
+        week = "This"
+
+      if week != prev
+        if prev
+          stdout += "\n"
+        stdout += "## #{week} week (until #{todo.due_at})\n\n"
+      prev = week
+
       stdout += todo.toMarkdown()
 
     cb null, stdout, stderr
-
-
 
   upload: (file, cb) ->
     stderr = "Read todo from #{file}\n"
