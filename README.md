@@ -91,6 +91,7 @@ If you want to avoid having other values overwritten, keep your Markdown file in
  - [ ] Tests for upload
  - [ ] remoteIds should be an instance variable (deal with async scope tho)
  - [ ] Summarize changes. Use that to avoid a double `Retrieving todolists...`
+ - [ ] Consider the strategy of Markdown files never clearing Basecamp todo properties. E.g. only adding/changing assignees & dates, not clearing them. Not clearing completed == true.
  - [x] Add `weekstarter` mode, gives a quick overview of Last week / This week
  - [x] Write completed todos at bottom of md list
  - [x] Better positioning
