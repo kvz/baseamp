@@ -19,6 +19,12 @@ compile:
 	@echo "Compiling files"
 	time make build
 
+download-real:
+	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js download ~/workspace/internals/Basecamp.md
+
+sync-real:
+	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js sync ~/workspace/internals/Basecamp.md
+
 run-upload:
 	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp.js upload ./test/fixtures/test.md
 
@@ -47,6 +53,8 @@ release-patch: build test
 	test \
 	lint \
 	build \
+	download-real \
+	sync-real \
 	run-download \
 	run-upload \
 	release-major \
