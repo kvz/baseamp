@@ -150,9 +150,15 @@ class Api
     for key, val of payload
       remVal = remoteItem[key]
 
+      # Turn assignee into callsign
       if key == "assignee"
         val    = @_assigneeToCallsign val, remoteIds
         remVal = @_assigneeToCallsign remVal, remoteIds
+
+      # Do not uncomplete remotely completed items as to allow
+      # people to check off items online
+      if key == "completed" && val == false && remVal && true
+        continue
 
       if val != remVal
         debug "CHANGE #{@_human type, payload, displayField}. Payload's '#{key}' is '#{val}' while remoteItem's is '#{remVal}'"

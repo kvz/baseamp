@@ -76,6 +76,9 @@ There is no concept of sub-todos.
 
 Keep in mind that if you remove 1 item from a list, it can result in `position` updates for siblings in that list.
 
+Baseamp does not uncomplete remotely completed items as to allow people to check off items online.
+
+
 ## Todo
 
  - [ ] Support for rate limiter (500 req/10 minutes)
