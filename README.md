@@ -76,8 +76,9 @@ There is no concept of sub-todos.
 
 Keep in mind that if you remove 1 item from a list, it can result in `position` updates for siblings in that list.
 
-Baseamp does not uncomplete remotely completed items as to allow people to check off items online.
+During a sync, when there are conflicting values, the local Markdown file is leading. However, Baseamp does not uncomplete remotely completed items as the usecase for that is limited, and this allows people to check off items online.
 
+If you want to avoid having other values overwritten, keep your Markdown file in Git, and do a download before editting & syncing.
 
 ## Todo
 
