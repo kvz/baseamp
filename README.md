@@ -28,7 +28,7 @@ export BASECAMP_ACCOUNT_ID="<your private account id (1st number in urls)>"
 export BASECAMP_PROJECT_ID="<your private project id (2nd number in urls)>"
 ```
 
-**WARNING: Use a test Project first, Baseamp will overwrite todos in existing projects!**
+**WARNING: Use a test project first, Baseamp will overwrite todos in existing projects!**
 
 To download (from Basecamp API -> local markdown):
 
@@ -54,7 +54,7 @@ To download (from Basecamp API -> local markdown):
 $ baseamp sync ./Our-Todos.md
 ```
 
-## Sync Behavior & Limitations
+## Warning: Sync Behavior & Limitations
 
 Because our two datasources (a markdown file and the basecamp api) weren't really designed to run in sync, Baseamps syncing is far from perfect.
 
@@ -82,7 +82,40 @@ Keep in mind that if you remove 1 item from a list, it can result in `position` 
 
 During a sync, when there are conflicting values, the local Markdown file is leading. However, Baseamp does not uncomplete remotely completed items as the usecase for that is limited, and this allows people to check off items online.
 
+## Use Git too!
+
 If you want to avoid having other values overwritten, keep your Markdown file in Git, and do a download before editting & syncing.
+
+This allows the use of a `Makefile` such as:
+
+```bash
+download:
+    git pull
+    git add --all .
+    git commit -am "Update todolist" || true
+    git push
+    source env.sh && baseamp download ./Basecamp.md
+    git diff --color | cat || true
+    git add --all .
+    git commit -am "Downloaded from Basecamp" || true
+    git push
+
+sync:
+    @git pull
+    @git add --all .
+    git commit -am "Update todolist" || true
+    git push
+    source env.sh && baseamp download ./Backup.md
+    git diff --color | cat || true
+    @test -z "$$(git status --porcelain)" || (echo "--> There are remote changes since you were last here. Copy your changes, type 'make download', paste your changes, try sync again. " && false)
+    source env.sh && baseamp sync ./Basecamp.md
+    git diff --color | cat || true
+    @git add --all .
+    git commit -am "Synced with Basecamp" || true
+    git push
+```
+
+Now if you type `make sync` in your Git todolist repo, you'll never overwrite remote changes by accident, and you always have a backup in `Backup.md`.
 
 ## Todo
 
