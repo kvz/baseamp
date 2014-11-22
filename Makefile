@@ -20,13 +20,13 @@ compile:
 	time make build
 
 download-real:
-	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js download ~/workspace/internals/Basecamp.md
+	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js download ~/code/internals/Basecamp.md
 
 upload-real:
-	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js upload ~/workspace/internals/Basecamp.md
+	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js upload ~/code/internals/Basecamp.md
 
 sync-real:
-	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js sync ~/workspace/internals/Basecamp.md
+	source env.sh && make build && DEBUG=Baseamp:* BASECAMP_PROJECT_ID=6904769 ./bin/baseamp.js sync ~/code/internals/Basecamp.md
 
 run-upload:
 	source env.sh && make build && DEBUG=Baseamp:* ./bin/baseamp.js upload ./test/fixtures/test.md
