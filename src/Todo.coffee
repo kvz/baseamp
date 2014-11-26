@@ -49,7 +49,7 @@ class Todo
 
     payload =
       content    : item.content
-      position   : item.position
+      # position   : item.position
       todolist_id: item.todolist_id
       completed  : item.completed
       due_at     : item.due_at || null
