@@ -89,30 +89,31 @@ If you want to avoid having other values overwritten, keep your Markdown file in
 This allows the use of a `Makefile` such as:
 
 ```bash
-download:
-    git pull
-    git add --all .
-    git commit -am "Update todolist" || true
-    git push
-    source env.sh && baseamp download ./Basecamp.md
-    git diff --color | cat || true
-    git add --all .
-    git commit -am "Downloaded from Basecamp" || true
-    git push
+download: install
+	git pull
+	git add --all .
+	git commit -am "Updated todolist" || true
+	git push
+	source env.sh && node_modules/.bin/baseamp download ./Backup.md
+	cp ./Backup.md ./Basecamp.md
+	git diff --color | cat || true
+	git add --all .
+	git commit -am "Downloaded from Basecamp" || true
+	git push
 
-sync:
-    @git pull
-    @git add --all .
-    git commit -am "Update todolist" || true
-    git push
-    source env.sh && baseamp download ./Backup.md
-    git diff --color | cat || true
-    @test -z "$$(git status --porcelain)" || (echo "--> There are remote changes since you were last here. Copy your changes, type 'make download', paste your changes, try sync again. " && false)
-    source env.sh && baseamp sync ./Basecamp.md
-    git diff --color | cat || true
-    @git add --all .
-    git commit -am "Synced with Basecamp" || true
-    git push
+sync: install
+	@git pull
+	@git add --all .
+	git commit -am "Updated todolist" || true
+	git push
+	source env.sh && node_modules/.bin/baseamp download ./Backup.md
+	git diff --color | cat || true
+	@test -z "$$(git status --porcelain)" || (echo "--> There are remote changes since you were last here. Copy your changes, type 'make download', paste your changes, try sync again. " && false)
+	source env.sh && node_modules/.bin/baseamp sync ./Basecamp.md
+	git diff --color | cat || true
+	@git add --all .
+	git commit -am "Synced with Basecamp" || true
+	git push
 ```
 
 Now if you type `make sync` in your Git todolist repo, you'll never overwrite remote changes by accident, and you always have a backup in `Backup.md`.
