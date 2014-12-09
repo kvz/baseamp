@@ -106,7 +106,7 @@ class TodoList
 
     lines.sort()
 
-    buf += lines.join "\n"
+    buf += lines.join ""
     buf += "\n"
 
     return buf

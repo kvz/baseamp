@@ -40,3 +40,33 @@ describe "todoList", ->
 
       done()
 
+  describe "toMarkdown", ->
+    it "should return sorted markdown", (done) ->
+
+      todoList = new TodoList """
+        ## Beautiful name of the list (#1)
+
+         - [ ] 2014-10-21 KVZ Fix all bugs (#5)
+         - [ ] 2014-10-21 JOD Fix all bugs (#4)
+         - [ ] 2014-10-21 KVZ Fix all bugs (#3)
+         - [ ] 2014-10-14 TIK Fix all bugs (#2)
+         - [ ] 2014-10-14 KVZ Fix all bugs (#1)
+      """
+
+      md = todoList.toMarkdown()
+
+
+      expect(md).to.equal """
+        ## Beautiful name of the list (#1)
+
+         - [ ] 2014-10-14 KVZ Fix all bugs (#1)
+         - [ ] 2014-10-14 TIK Fix all bugs (#2)
+         - [ ] 2014-10-21 JOD Fix all bugs (#4)
+         - [ ] 2014-10-21 KVZ Fix all bugs (#3)
+         - [ ] 2014-10-21 KVZ Fix all bugs (#5)
+
+
+      """
+
+      done()
+
