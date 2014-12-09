@@ -66,15 +66,18 @@ class Baseamp
       if week != prev
         if prev
           stdout += "\n"
+        else
+          lines.sort()
+          stdout += lines.join ""
+          lines = []
         stdout += "## #{week} week (until #{Util.formatDate periodEnds})\n\n"
-        lines.sort()
-        stdout += lines.join ""
       prev = week
 
       lines.push todo.toMarkdown()
 
     lines.sort()
     stdout += lines.join ""
+    lines = []
 
     cb null, stdout, stderr
 
