@@ -44,7 +44,8 @@ class Baseamp
     stderr = "Read todo from #{file}\n"
     stdout = ""
 
-    if !now
+    if !now || _.isFunction(now)
+      cb  = now
       now = +new Date()
 
     daySaturday = 6
