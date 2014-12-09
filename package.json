@@ -1,6 +1,6 @@
 {
   "name": "baseamp",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Convert your Markdown todo lists to Basecamp Todolists and back",
   "keywords": [
     "basecamp",
