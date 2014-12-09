@@ -69,7 +69,7 @@ When uploading, Baseamp:
 When downloading, Baseamp:
 
  - Extracts full Todolists of a project, and saves them to a markdown file (or STDOUT), overwriting anything that was already there.
- - Sorts todos within lists alphabetically (`due_at`, `assignee`, `content`)
+ - Sorts todos within lists alphabetically (`completed`, `due_at`, `assignee`, `content`)
 
 When syncing, Baseamp:
 
