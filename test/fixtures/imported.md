@@ -1,6 +1,6 @@
 ## Uncategorized
 
- - [ ] 2014-10-26 Transloadify Blogpost (with animated Gif!) (#22)
+ - [ ] 2014-10-19 Transloadify Blogpost (with animated Gif!) (#22)
  - [ ] 2014-10-26 KVZ Upgrade stunnel and turn off SSLv3 (again) https://assets.digitalocean.com/email/POODLE_email.html (#22)
  - [ ] 2014-10-26 JOD Go SDK Blogpost (#22)
  - [ ] 2014-10-26 KVZ Loosen up the awselb-crm-production-Low-Healthy-Hosts ALARM (#22)
@@ -10,7 +10,7 @@
  - [ ] 2014-10-26 KVZ Move internal markdown todos to Basecamp (#22)
  - [x] KVZ whatever yo (#22)
  - [x] Testing API :D (#22)
- - [x] JOD Release Go SDK Beta (#22)
+ - [x] 2014-10-19 JOD Release Go SDK Beta (#22)
  - [x] KVZ Support/Inbox Backlog (#22)
 
 ## Bugs (this list should always be emptied first)

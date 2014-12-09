@@ -40,20 +40,22 @@ class Baseamp
 
     cb null, stdout, stderr
 
-  weekstarter: (file, cb) ->
+  weekstarter: (file, now, cb) ->
     stderr = "Read todo from #{file}\n"
     stdout = ""
 
+    if !now
+      now = +new Date()
+
     daySaturday = 6
     periods     =
-      prev: +moment().day(daySaturday - 14)
-      curr: +moment().day(daySaturday - 7)
-      next: +moment().day(daySaturday + 0)
+      prev: +moment(now).day(daySaturday - 14)
+      curr: +moment(now).day(daySaturday - 7)
+      next: +moment(now).day(daySaturday + 0)
 
     buf       = fs.readFileSync file, "utf-8"
     todoLists = new TodoLists buf
     todos     = todoLists.searchBetween periods.prev, periods.next
-    lines     = []
     for todo in todos
       due_at = +moment(todo.due_at)
       if due_at >= periods.prev && due_at < periods.curr
@@ -66,18 +68,10 @@ class Baseamp
       if week != prev
         if prev
           stdout += "\n"
-        else
-          lines.sort()
-          stdout += lines.join ""
-          lines = []
         stdout += "## #{week} week (until #{Util.formatDate periodEnds})\n\n"
       prev = week
 
-      lines.push todo.toMarkdown()
-
-    lines.sort()
-    stdout += lines.join ""
-    lines = []
+      stdout += todo.toMarkdown()
 
     cb null, stdout, stderr
 
