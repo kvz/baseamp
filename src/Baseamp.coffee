@@ -47,12 +47,13 @@ class Baseamp
     daySaturday = 6
     periods     =
       prev: +moment().day(daySaturday - 14)
-      curr : +moment().day(daySaturday - 7)
+      curr: +moment().day(daySaturday - 7)
       next: +moment().day(daySaturday + 0)
 
     buf       = fs.readFileSync file, "utf-8"
     todoLists = new TodoLists buf
     todos     = todoLists.searchBetween periods.prev, periods.next
+    lines     = []
     for todo in todos
       due_at = +moment(todo.due_at)
       if due_at >= periods.prev && due_at < periods.curr
@@ -66,9 +67,14 @@ class Baseamp
         if prev
           stdout += "\n"
         stdout += "## #{week} week (until #{Util.formatDate periodEnds})\n\n"
+        lines.sort()
+        stdout += lines.join ""
       prev = week
 
-      stdout += todo.toMarkdown()
+      lines.push todo.toMarkdown()
+
+    lines.sort()
+    stdout += lines.join ""
 
     cb null, stdout, stderr
 
