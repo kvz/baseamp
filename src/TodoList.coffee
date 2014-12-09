@@ -95,13 +95,18 @@ class TodoList
     buf = "## #{@name} (##{@id})\n"
     buf += "\n"
 
-    Util.sortByObjField @todos, "position"
+    lines = []
+
+    # Util.sortByObjField @todos, "position"
     for todo in @todos when todo.completed == false
-      buf += todo.toMarkdown()
+      lines.push todo.toMarkdown()
 
     for todo in @todos when todo.completed == true
-      buf += todo.toMarkdown()
+      lines.push todo.toMarkdown()
 
+    lines.sort()
+
+    buf += lines.join "\n"
     buf += "\n"
 
     return buf

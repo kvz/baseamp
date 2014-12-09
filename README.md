@@ -62,13 +62,14 @@ Here are pointers on behavior and things to watch out for.
 
 When uploading, Baseamp:
 
- - creates lists & todos that do not exists
- - updates lists & todos that we already track the `(#id)` of in markdown text
- - never deletes something that exist on Basecamp, but not in local markdown, as someone else may have added this item online.
+ - Creates lists & todos that do not exists
+ - Updates lists & todos that we already track the `(#id)` of in markdown text
+ - Never deletes something that exist on Basecamp, but not in local markdown, as someone else may have added this item online.
 
 When downloading, Baseamp:
 
  - Extracts full Todolists of a project, and saves them to a markdown file (or STDOUT), overwriting anything that was already there.
+ - Sorts todos within lists alphabetically (date, assignee, title)
 
 When syncing, Baseamp:
 
