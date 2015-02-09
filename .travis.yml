@@ -4,11 +4,7 @@ node_js:
   - "0.10"
 script: make test REPORTER=spec
 
-# travis encrypt [subdomain]:[api token]@[room id]
-# notifications:
-#   email: false
-#   campfire:
-#     rooms:
-#       secure: xyz
-#     on_failure: always
-#     on_success: always
+notifications:
+  email: false
+  slack:
+    secure: rt4NQ/57VVaK5hlkySATUD938w+jcnq8tpOseftqqVmGOk5c24tg/0yONgm7PTcKJebx8eJQV/wgfjdCidzmW16lkUcqT+R7/59SajJk7v+rJd3cYc0Qzc4lhlsR/tS0juvt+6kR0N5aUinDwzpvdz4i0Y+TkscBzjL5uWVvlBc=
