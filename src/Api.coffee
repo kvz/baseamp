@@ -107,6 +107,10 @@ class Api
         # debug "SKIP #{@_human type, payload, displayField}"
         return qCb()
 
+      if !payload[displayField]
+        debug "SKIP empty weird todo with id: #{payload?.id}"
+        return qCb()
+
       debug "PUSH   #{@_human type, payload, displayField}"
       pushed++
       opts =
