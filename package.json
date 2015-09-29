@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "async": "1.4.2",
-    "debug": "1.0.4",
+    "debug": "2.2.0",
     "moment": "2.10.6",
     "mustache": "0.8.2",
     "request": "2.36.0",
